@@ -6,7 +6,8 @@ API_SECRET = 'c2Q3V74CjGsaqcKzJ86ueTCf7Zzj1OIJ0kKGw4jf0'
 def get_toread_titles():
     pass
 
-user_id = '3696598'
+
+USER_ID = '3696598'
 #url = 'https://www.goodreads.com/review/list/3696598-doug?shelf=to-read'
 url = 'https://www.goodreads.com/review/list.xml?v=2&key={key}&id={id}&shelf=to-read'.format(key=api_key,id=user_id)
 try:

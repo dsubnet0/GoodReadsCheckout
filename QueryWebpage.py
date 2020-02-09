@@ -1,7 +1,9 @@
 import requests
 from lxml import html
 from bs4 import BeautifulSoup
-import dumper
+import pprint
+
+PP = pprint.PrettyPrinter(indent=4)
 
 
 def text(elt):
@@ -20,25 +22,13 @@ def query_southbury_library(title):
 
     soup = BeautifulSoup(page.content, 'html.parser')
     for table in soup.find_all('table', id='result_table_table'):
-        for subtable in table.find_all('table'):
-            print('ITEM>'+str(subtable)+'\n')
+        for subtable in table.find_all(attrs={'class':'result_holdings_table'}):
+            for row in subtable.find_all('tr'):
+                record = []
+                for subrow in row.find_all('td'):
+                    record.append(subrow.string)
+                print(' '.join(record))
 
-#    tb = soup.find('table', id='result_table_table')
-#    for t2 in tb.find_all('tr'):
-#        print('ITEM>'+str(t2.find('td')))
-
-
-    #tree = html.fromstring(page.content)
-    #for table in tree.xpath('//table[@id="result_table_table"]'):
-    #    header = [text(th) for th in table.xpath('//th')]
-    #    data = []
-    #    for tr in table.xpath('//tr'):
-    #        for td in tr.xpath('td'):
-    #            #print('BEGIN>'+text(td).strip()+'<END')
-    #            data.append(text(td).strip())
-    #    data = [row for row in data if len(row)==len(header)]
-    #    data = pd.DataFrame(data,columns=header)
-    #    print(data)
 
 if __name__ == '__main__':
-    print(query_southbury_library('wuthering heights'))
+    print(query_southbury_library('fear and loathing'))

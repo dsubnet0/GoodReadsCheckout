@@ -1,10 +1,11 @@
 import requests
 from lxml import html
-import pandas
+from bs4 import BeautifulSoup
+import dumper
 
 
 def text(elt):
-    return elt.text_content().replace(u'\xa0',u' ')
+    return elt.text_content().replace(u'\xa0', u' ')
 
 
 def query_southbury_library(title):
@@ -16,21 +17,28 @@ def query_southbury_library(title):
     if not page:
         print('Some problem with the library request')
         return -1
-#    print(page.text)
-    #search_results = xmltodict.parse(r.text)
-    #print(search_results)
-    tree = html.fromstring(page.content)
-    #div class="result_table_title_cell"
-    for table in tree.xpath('//table[@id="result_table_table"]'):
-#        header = [text(th) for th in table.xpath('//th')]  # 1
-#        data = [[text(td) for td in tr.xpath('td')]
-#                for tr in table.xpath('//tr')]  # 2
-#        data = [row for row in data if len(row) == len(header)]  # 3
-#        data = pandas.DataFrame(data, columns=header)  # 4
-#        print(data)
-        for tr in table.xpath('//tr'):
-            for td in tr.xpath('td'):
-                print(text(td))
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+    for table in soup.find_all('table', id='result_table_table'):
+        for subtable in table.find_all('table'):
+            print('ITEM>'+str(subtable)+'\n')
+
+#    tb = soup.find('table', id='result_table_table')
+#    for t2 in tb.find_all('tr'):
+#        print('ITEM>'+str(t2.find('td')))
+
+
+    #tree = html.fromstring(page.content)
+    #for table in tree.xpath('//table[@id="result_table_table"]'):
+    #    header = [text(th) for th in table.xpath('//th')]
+    #    data = []
+    #    for tr in table.xpath('//tr'):
+    #        for td in tr.xpath('td'):
+    #            #print('BEGIN>'+text(td).strip()+'<END')
+    #            data.append(text(td).strip())
+    #    data = [row for row in data if len(row)==len(header)]
+    #    data = pd.DataFrame(data,columns=header)
+    #    print(data)
 
 if __name__ == '__main__':
     print(query_southbury_library('wuthering heights'))

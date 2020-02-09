@@ -28,10 +28,4 @@ USER_ID = '3696598'
 if __name__ == '__main__':
     get_toread_titles(USER_ID)
 
-#print(r.text)
-
-
-#    for key,value in book['book'].items():
-#        if key == 'title':
-#            print('Title:',value)
 

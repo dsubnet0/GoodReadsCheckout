@@ -21,14 +21,24 @@ def query_southbury_library(title):
         return -1
 
     soup = BeautifulSoup(page.content, 'html.parser')
+    records = []
+    titles = []
     for table in soup.find_all('table', id='result_table_table'):
+        for t in table.find_all(attrs={'class':'record_title search_link'}):
+            #print(t.get('title').replace('Display record details for ',''))
+            titles.append(t.get('title').replace('Display record details for ',''))
         for subtable in table.find_all(attrs={'class':'result_holdings_table'}):
             for row in subtable.find_all('tr'):
                 record = []
                 for subrow in row.find_all('td'):
                     record.append(subrow.string)
-                print(' '.join(record))
+                if len(record)>0:
+                    records.append(record)
+    for i in range(0,len(titles)):
+       records[i].insert(0,titles[i])
+    return records
 
 
 if __name__ == '__main__':
-    print(query_southbury_library('fear and loathing'))
+    for r in query_southbury_library('fear and loathing'):
+        print('|'.join(r))

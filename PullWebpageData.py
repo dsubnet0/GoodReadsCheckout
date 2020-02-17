@@ -19,13 +19,14 @@ def get_toread_titles(user_id):
     title_list = []
     for entry in shelf_contents['GoodreadsResponse']['reviews']['review']:
         entry_items = entry['book']
-        print(entry_items['title'])
-    return 0
+        title_list.append(entry_items['title'])
+    return title_list
 
 
 USER_ID = '3696598'
 
 if __name__ == '__main__':
-    get_toread_titles(USER_ID)
+    for t in get_toread_titles(USER_ID):
+        print(t)
 
 

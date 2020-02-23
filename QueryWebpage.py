@@ -34,8 +34,9 @@ def query_southbury_library(title):
                     record.append(subrow.string)
                 if len(record)>0:
                     records.append(record)
-    for i in range(0,len(titles)):
-       records[i].insert(0,titles[i])
+    for i in range(0, len(titles)):
+        if 0<=i<len(records):
+            records[i].insert(0, titles[i])
     return records
 
 

@@ -1,5 +1,5 @@
 import requests
-from lxml import html
+#from lxml import html
 from bs4 import BeautifulSoup
 import pprint
 
@@ -10,8 +10,8 @@ def text(elt):
     return elt.text_content().replace(u'\xa0', u' ')
 
 
-def query_southbury_library(title):
-    url = 'https://southbury.biblio.org/eg/opac/results?query={}&qtype=title&fi%3Asearch_format=book&locg=89&detail_record_view=0&sort=popularity'.format(title)
+def query_southbury_library(query, format='book'):
+    url = f'https://southbury.biblio.org/eg/opac/results?query={query}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&sort=popularity'
     try:
         page = requests.get(url)
     except Exception as e:

@@ -8,11 +8,11 @@ verify_ssl = true
 [packages]
 requests = "*"
 xmltodict = "*"
-html = "*"
+#html = "*"
 lxml = "*"
 pandas = "*"
 beautifulsoup4 = "*"
 dumper = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3"

@@ -22,6 +22,7 @@ def get_toread_titles(user_id, page=1):
     for entry in shelf_contents['GoodreadsResponse']['reviews']['review']:
         entry_items = entry['book']
         title_list.append(entry_items['title'])
+    print(title_list)
     return title_list
 
 

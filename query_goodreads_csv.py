@@ -6,6 +6,5 @@ def get_toread_titles():
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             if row['Bookshelves'] == 'to-read':
-                #print(f'{row["Title"]}')
                 title_list.append(f"{row['Title']} {row['Author']}")
     return title_list

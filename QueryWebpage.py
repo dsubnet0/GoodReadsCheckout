@@ -1,5 +1,4 @@
 import requests
-from lxml import html
 from bs4 import BeautifulSoup
 import pprint
 
@@ -10,8 +9,8 @@ def text(elt):
     return elt.text_content().replace(u'\xa0', u' ')
 
 
-def query_southbury_library(title):
-    url = 'https://southbury.biblio.org/eg/opac/results?query={}&qtype=title&fi%3Asearch_format=book&locg=89&detail_record_view=0&sort=popularity'.format(title)
+def query_southbury_library(query, format='book'):
+    url = f'https://southbury.biblio.org/eg/opac/results?query={query}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&sort=popularity'
     try:
         page = requests.get(url)
     except Exception as e:
@@ -25,7 +24,6 @@ def query_southbury_library(title):
     titles = []
     for table in soup.find_all('table', id='result_table_table'):
         for t in table.find_all(attrs={'class':'record_title search_link'}):
-            #print(t.get('title').replace('Display record details for ',''))
             titles.append(t.get('title').replace('Display record details for ',''))
         for subtable in table.find_all(attrs={'class':'result_holdings_table'}):
             for row in subtable.find_all('tr'):

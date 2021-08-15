@@ -1,5 +1,4 @@
 import argparse
-import sys
 
 from query_goodreads_csv import get_toread_titles
 from QueryWebpage import query_southbury_library
@@ -40,7 +39,7 @@ if __name__ == '__main__':
             if len(results) > 0:
                 print('')
         titles_considered += 1
-        if titles_hit >= int(args.number_of_hits):
+        if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')
     print(f'results returned: {str(titles_hit)}')

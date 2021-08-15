@@ -1,8 +1,8 @@
 import requests
 import xmltodict
 
-API_KEY = 'gslnNIUU1HVFZN4kQig'
-API_SECRET = 'c2Q3V74CjGsaqcKzJ86ueTCf7Zzj1OIJ0kKGw4jf0'
+API_KEY = 'abc123'
+API_SECRET = 'abc123'
 
 
 def get_toread_titles(user_id, page=1):
@@ -26,7 +26,7 @@ def get_toread_titles(user_id, page=1):
     return title_list
 
 
-USER_ID = '3696598'
+USER_ID = '12345'
 
 if __name__ == '__main__':
     for t in get_toread_titles(USER_ID):

@@ -1,5 +1,4 @@
 import argparse
-import sys
 
 from query_goodreads_csv import get_toread_titles
 from QueryWebpage import query_southbury_library

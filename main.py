@@ -1,8 +1,21 @@
 import argparse
 
 from query_goodreads_csv import get_toread_titles
-from QueryWebpage import query_southbury_library
+from QueryWebpage import query_southbury_library, get_goodreads_list_titles
 
+def query_by_title(title: str, format: str = 'book'):
+    titles_hit = 0
+    if args.verbose: print(f'searching for {title} ({format})...')
+    results = query_southbury_library(title, format)
+    if len(results) > 0:
+        print(f'{title} ({format}):')
+        titles_hit += 1
+    for r in results:
+        if len(r)>0:
+            print('|'.join(r))
+    if len(results) > 0:
+        print('')
+    return titles_hit
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -15,29 +28,11 @@ if __name__ == '__main__':
     titles_considered = 0
     titles_hit = 0
     page = 0
-    for title in get_toread_titles():
-        if args.verbose:
-            print(f'Searching for {title}...')
+    for title in get_goodreads_list_titles(user_string='3696598-doug'):
         if args.books:
-            results = query_southbury_library(title, 'book')
-            if len(results) > 0:
-                print(f'{title} (book):')
-                titles_hit += 1
-            for r in results:
-                if len(r)>0:
-                    print('|'.join(r))
-            if len(results) > 0:
-                print('')
+            titles_hit += query_by_title(title, 'book')
         if args.ebooks:
-            results = query_southbury_library(title, 'ebook')
-            if len(results) > 0:
-                print(f'{title} (ebook):')
-                titles_hit += 1
-            for r in results:
-                if len(r)>0:
-                    print('|'.join(r))
-            if len(results) > 0:
-                print('')
+            titles_hit += query_by_title(title, 'ebook')
         titles_considered += 1
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break

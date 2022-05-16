@@ -38,14 +38,17 @@ def query_southbury_library(query, format='book'):
             records[i].insert(0, titles[i])
     return records
 
-def get_goodreads_list_titles(user_string: str): # Returns...say, a list of titles, for now
-    print('Compiling title list from Goodreads...')
+def get_goodreads_list(user_string: str, verbose: bool = False): 
+    """"  
+    Returns an array of (title,isbn) dicts
+    """
+    print('Compiling titles and ISBNs from Goodreads...')
     page_number = 1
     records = []
     records_in_page = 99
     while records_in_page > 0:
         records_in_page = 0
-        logging.debug(f'Fetching page {page_number}')
+        if verbose: print(f'Fetching page {page_number}')
         url = f'https://www.goodreads.com/review/list/{user_string}?page={page_number}&ref=nav_mybooks&shelf=to-read&per_page=50'
         try:
             page = requests.get(url)
@@ -55,12 +58,21 @@ def get_goodreads_list_titles(user_string: str): # Returns...say, a list of titl
             print('Some problem with the Goodreads request')
             return -1
         
+        title = ''
+        isbn = ''
         soup = BeautifulSoup(page.content, 'html.parser')
         for table in soup.find_all('table', id='books'):
-            for row in table.find_all('td',attrs={'class':'field title'}):
-                for link in row.find_all('a'):
-                    records.append(link.get("title"))
-                    records_in_page += 1
+            for row in table.find_all('td'):
+                records_in_page += 1
+                td_class = ' '.join(row.get('class'))
+                if td_class == 'field title' or td_class == 'field isbn':
+                    for value in row.find_all('div', attrs={'class':'value'}):
+                        if td_class == 'field title':
+                            title = value.get_text().strip()
+                        if td_class == 'field isbn':
+                            isbn = value.get_text().strip()
+                        records.append({'title': title, 'isbn': isbn})
+        if verbose: print(f'{len(records)} found so far')
         page_number += 1
     print(f'{len(records)} titles found')
     return records
@@ -70,4 +82,4 @@ def get_goodreads_list_titles(user_string: str): # Returns...say, a list of titl
 if __name__ == '__main__':
     #for r in query_southbury_library('fear and loathing'):
     #    print('|'.join(r))
-    print(get_goodreads_list_titles(user_string='3696598-doug'))
+    print(get_goodreads_list(user_string='3696598-doug', verbose=True))

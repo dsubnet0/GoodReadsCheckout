@@ -17,6 +17,20 @@ def query_library_by_title(title: str, format: str = 'book'):
         print('')
     return titles_hit
 
+def query_library_by_isbn(isbn: str, format: str = 'book'):
+    titles_hit = 0
+    if args.verbose: print(f'searching for {isbn} ({format})...')
+    results = query_southbury_library(isbn, format)
+    if len(results) > 0:
+        print(f'{isbn} ({format}):')
+        titles_hit += 1
+    for r in results:
+        if len(r)>0:
+            print('|'.join(r))
+    if len(results) > 0:
+        print('')
+    return titles_hit
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--books', help='Search for regular books', action='store_true')
@@ -30,10 +44,13 @@ if __name__ == '__main__':
     page = 0
     for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose):
         title = book_dict['title']
+        isbn = book_dict['isbn']
         if args.books:
             titles_hit += query_library_by_title(title, 'book')
+            titles_hit += query_library_by_isbn(isbn, 'book')
         if args.ebooks:
             titles_hit += query_library_by_title(title, 'ebook')
+            titles_hit += query_library_by_isbn(isbn, 'ebook')
         titles_considered += 1
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break

@@ -50,28 +50,33 @@ def get_goodreads_list(user_string: str, verbose: bool = False):
         records_in_page = 0
         if verbose: print(f'Fetching page {page_number}')
         url = f'https://www.goodreads.com/review/list/{user_string}?page={page_number}&ref=nav_mybooks&shelf=to-read&per_page=50'
+        if verbose: print(url)
         try:
             page = requests.get(url)
         except Exception as e:
             print(e)
         if not page:
             print('Some problem with the Goodreads request')
-            return -1
+            return records
         
-        title = ''
-        isbn = ''
         soup = BeautifulSoup(page.content, 'html.parser')
         for table in soup.find_all('table', id='books'):
-            for row in table.find_all('td'):
-                records_in_page += 1
-                td_class = ' '.join(row.get('class'))
-                if td_class == 'field title' or td_class == 'field isbn':
-                    for value in row.find_all('div', attrs={'class':'value'}):
-                        if td_class == 'field title':
-                            title = value.get_text().strip()
-                        if td_class == 'field isbn':
-                            isbn = value.get_text().strip()
-                        records.append({'title': title, 'isbn': isbn})
+            for row in table.find_all('tr'):
+                title = ''
+                isbn = ''
+                for data in row.find_all('td'):
+                    td_class = ' '.join(data.get('class'))
+                    if td_class == 'field title' or td_class == 'field isbn':
+                        for value in data.find_all('div', attrs={'class':'value'}):
+                            if td_class == 'field title':
+                                title = value.get_text().strip()
+                                break
+                            if td_class == 'field isbn':
+                                isbn = value.get_text().strip()
+                                break
+                if title and isbn:
+                    records.append({'title': title, 'isbn': isbn})
+                    records_in_page += 1
         if verbose: print(f'{len(records)} found so far')
         page_number += 1
     print(f'{len(records)} titles found')

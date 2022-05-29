@@ -1,11 +1,10 @@
 import argparse
 
-from query_goodreads_csv import get_toread_titles
-from QueryWebpage import query_southbury_library, get_goodreads_list
+from src.query_webpage import query_southbury_library, get_goodreads_list
 
 def query_library_by_title(title: str, format: str = 'book'):
     titles_hit = 0
-    if args.verbose: print(f'searching for {title} ({format})...')
+    print(f'searching for {title} ({format})...')
     results = query_southbury_library(title, format)
     if len(results) > 0:
         print(f'{title} ({format}):')

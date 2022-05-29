@@ -1,33 +1,16 @@
 import argparse
 
-from src.query_webpage import query_southbury_library, get_goodreads_list
-
-def query_library_by_title(title: str, format: str = 'book'):
-    titles_hit = 0
-    print(f'searching for {title} ({format})...')
-    results = query_southbury_library(title, format)
-    if len(results) > 0:
-        print(f'{title} ({format}):')
-        titles_hit += 1
-    for r in results:
-        if len(r)>0:
-            print('|'.join(r))
-    if len(results) > 0:
-        print('')
-    return titles_hit
+from query_webpage import query_southbury_library_by_isbn, get_goodreads_list
 
 def query_library_by_isbn(isbn: str, format: str = 'book'):
     titles_hit = 0
     if args.verbose: print(f'searching for {isbn} ({format})...')
-    results = query_southbury_library(isbn, format)
+    results = query_southbury_library_by_isbn(isbn, format)
     if len(results) > 0:
-        print(f'{isbn} ({format}):')
+        print(f'\n{isbn} ({format}):')
         titles_hit += 1
-    for r in results:
-        if len(r)>0:
-            print('|'.join(r))
-    if len(results) > 0:
-        print('')
+        for r in results:
+            print(' | '.join(r.values()))
     return titles_hit
 
 if __name__ == '__main__':
@@ -42,13 +25,10 @@ if __name__ == '__main__':
     titles_hit = 0
     page = 0
     for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose):
-        title = book_dict['title']
         isbn = book_dict['isbn']
         if args.books:
-            titles_hit += query_library_by_title(title, 'book')
             titles_hit += query_library_by_isbn(isbn, 'book')
         if args.ebooks:
-            titles_hit += query_library_by_title(title, 'ebook')
             titles_hit += query_library_by_isbn(isbn, 'ebook')
         titles_considered += 1
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):

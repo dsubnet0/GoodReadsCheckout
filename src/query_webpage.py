@@ -68,8 +68,10 @@ def get_goodreads_list(user_string: str, verbose: bool = False):
                             if td_class == 'field isbn':
                                 isbn = value.get_text().strip()
                                 break
-                if title and isbn:
-                    records.append({'title': title, 'isbn': isbn})
+                            if td_class == 'field isbn13':
+                                isbn13 = value.get_text().strip()
+                if title and isbn and isbn13:
+                    records.append({'title': title, 'isbn': isbn, 'isbn13': isbn13})
                     records_in_page += 1
         if verbose: print(f'{len(records)} found so far')
         page_number += 1

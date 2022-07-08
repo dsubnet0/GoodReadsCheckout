@@ -15,4 +15,4 @@ def query_rakuten_by_isbn13(isbn13: str, verbose=False):
     return result.json()
 
 if __name__ == '__main__':
-    print(query_rakuten_by_isbn13('9780593320532', True))
+    print(query_rakuten_by_isbn13('9780593320532', False))

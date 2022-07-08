@@ -64,7 +64,6 @@ def get_goodreads_list(user_string: str, verbose: bool = False, scoop_size: int 
                     td_class = ' '.join(data.get('class'))
                     if td_class == 'field title' or td_class == 'field isbn' or td_class == 'field isbn13':
                         for value in data.find_all('div', attrs={'class':'value'}):
-                            print(value)
                             if td_class == 'field title':
                                 title = value.get_text().strip()
                                 break

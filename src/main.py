@@ -18,11 +18,11 @@ def print_library_results(isbn: str, format: str = 'book'):
 def print_rakuten_results(isbn13: str):
     titles_hit = 0
     if args.verbose: print(f'searching rakuten for {isbn13}...')
-    results = query_rakuten_by_isbn13(isbn13)
-    if len(results) > 0:
-        print(f'\n{isbn13}:')
+    results = query_rakuten_by_isbn13(isbn13, args.verbose)
+    if len(results) > 0 and len(results['Items']) > 0:
         titles_hit += 1
-        print(f'{r["title"]} - {r["itemUrl"]}')
+        for r in results['Items']:
+            print(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
     return titles_hit
 
 if __name__ == '__main__': 
@@ -48,6 +48,7 @@ if __name__ == '__main__':
             if isbn13:
                 titles_hit += print_rakuten_results(isbn13)
         titles_considered += 1
+        print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

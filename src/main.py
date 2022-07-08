@@ -22,8 +22,7 @@ def print_rakuten_results(isbn13: str):
     if len(results) > 0:
         print(f'\n{isbn13}:')
         titles_hit += 1
-        for r in results:
-            print(' | '.join(r.values()))
+        print(f'{r["title"]} - {r["itemUrl"]}')
     return titles_hit
 
 if __name__ == '__main__': 
@@ -32,19 +31,22 @@ if __name__ == '__main__':
     parser.add_argument('--ebooks', help='Search for ebooks', action='store_true')
     parser.add_argument('--verbose', help='Verbose', action='store_true')
     parser.add_argument('--number_of_hits', '-n', help='Stop after this many hits')
+    parser.add_argument('--scoop-size', '-s', help='GoodReads scoop size')
     args = parser.parse_args()
 
     titles_considered = 0
     titles_hit = 0
     page = 0
-    for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose):
+    for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose, scoop_size=args.scoop_size):
+        print(book_dict)
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
         if args.books:
             titles_hit += print_library_results(isbn, 'book')
         if args.ebooks:
             titles_hit += print_library_results(isbn, 'ebook')
-            titles_hit += print_rakuten_results(isbn13)
+            if isbn13:
+                titles_hit += print_rakuten_results(isbn13)
         titles_considered += 1
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break

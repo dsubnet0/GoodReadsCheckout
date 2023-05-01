@@ -38,7 +38,7 @@ if __name__ == '__main__':
     titles_hit = 0
     page = 0
     for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose, scoop_size=args.scoop_size):
-        print(book_dict)
+        if args.verbose: print(book_dict)
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
         if args.books:
@@ -48,7 +48,7 @@ if __name__ == '__main__':
             if isbn13:
                 titles_hit += print_rakuten_results(isbn13)
         titles_considered += 1
-        print('')
+        if args.verbose: print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

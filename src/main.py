@@ -1,6 +1,7 @@
 import argparse
 
-from query_webpage import query_southbury_library_by_isbn, get_goodreads_list
+from GoodReads import GoodReads
+from query_webpage import query_southbury_library_by_isbn
 from query_api import query_rakuten_by_isbn13
 
 
@@ -37,7 +38,11 @@ if __name__ == '__main__':
     titles_considered = 0
     titles_hit = 0
     page = 0
-    for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose, scoop_size=args.scoop_size):
+
+    my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
+
+    # for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose, scoop_size=args.scoop_size):
+    for book_dict in my_goodreads.toread_list:
         if args.verbose: print(book_dict)
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']

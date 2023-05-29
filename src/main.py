@@ -46,11 +46,9 @@ if __name__ == '__main__':
         title = book_dict['title']
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
-        my_library = Library()
-        # my_kobo = Rakuten()
+        my_library = Library(verbose=args.verbose)
         if args.books:
-            # titles_hit += print_library_results(isbn, 'book')
-            library_result = Library.get_book(title=title, isbn=isbn)
+            library_result = my_library.get_book(title=title, isbn=isbn, format='book')
             if library_result:
                 print(library_result)
                 titles_hit += 1

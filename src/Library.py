@@ -13,18 +13,32 @@ class Library():
         self.verbose = verbose
     
 
-    def get_book(self, title: str, isbn: str) -> str:
+    def get_book(self, title: str, isbn: str, format: str) -> str:
         isbn_result = self._query_library_by_isbn(isbn, format)
         result_string = ''
         if len(isbn_result) > 0:
-            result_string .= f'\n\n{isbn} ({format}):'
+            result_string += f'\n\n{isbn} ({format}):'
             for r in isbn_result:
-                result_string .= '\n'+'|'.join(r.values())
+                result_string += '\n'+'|'.join(r.values())
+        else:
+            title_result = self._query_library_by_title(title, format)
+            if len(title_result) > 0:
+                result_string += f'\n\n{title} ({format}):'
+                for r in title_result:
+                    result_string += '\n'+'|'.join(r.values())
         return result_string
 
 
-    def _query_library_by_isn(self, isbn: str, format: str):
+    def _query_library_by_isbn(self, isbn: str, format: str):
         url = self._get_search_url_isbn(isbn=isbn, format=format)
+        return self._query_library(url)
+    
+
+    def _query_library_by_title(self, title: str, format: str):
+        url = self._get_search_url_title(title=title, format=format)
+        return self._query_library(url)
+    
+    def _query_library(self, url):
         if self.verbose: print(url)
         try:
             page = requests.get(url)
@@ -40,7 +54,7 @@ class Library():
         return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
     def _get_search_url_title(self, title: str, format: str) -> str:
-        return f'{self.base_url}identifier%7Ctitle%3A{title}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
     
     def _parse_library_results(self, page):
@@ -55,6 +69,5 @@ class Library():
                     if 'Southbury' in availability:
                         for call_number in results.find_all('div', attrs={'class': 'result_call_number'}):
                             call_number_text = call_number.get_text().strip()
-
                             records.append({'title': title_text, 'availability': availability, 'call_number': call_number_text})
         return records

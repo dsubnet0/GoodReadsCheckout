@@ -1,6 +1,7 @@
 import argparse
 
 from GoodReads import GoodReads
+from Library import Library
 from query_webpage import query_southbury_library_by_isbn
 from query_api import query_rakuten_by_isbn13
 
@@ -32,7 +33,6 @@ if __name__ == '__main__':
     parser.add_argument('--ebooks', help='Search for ebooks', action='store_true')
     parser.add_argument('--verbose', help='Verbose', action='store_true')
     parser.add_argument('--number_of_hits', '-n', help='Stop after this many hits')
-    parser.add_argument('--scoop-size', '-s', help='GoodReads scoop size')
     args = parser.parse_args()
 
     titles_considered = 0
@@ -41,13 +41,19 @@ if __name__ == '__main__':
 
     my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
 
-    # for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose, scoop_size=args.scoop_size):
     for book_dict in my_goodreads.toread_list:
         if args.verbose: print(book_dict)
+        title = book_dict['title']
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
+        my_library = Library()
+        # my_kobo = Rakuten()
         if args.books:
-            titles_hit += print_library_results(isbn, 'book')
+            # titles_hit += print_library_results(isbn, 'book')
+            library_result = Library.get_book(title=title, isbn=isbn)
+            if library_result:
+                print(library_result)
+                titles_hit += 1
         if args.ebooks:
             titles_hit += print_library_results(isbn, 'ebook')
             if isbn13:

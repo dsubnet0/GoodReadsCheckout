@@ -3,7 +3,7 @@
 ### USAGE
 ```
 pipenv install
-pipenv run python main.py [--books] [--ebooks] [--number_of_hits=n]
+pipenv run python src/main.py [--books] [--ebooks] [--number_of_hits=n]
 ```
 
 Currently only queries my library, the Southbury, CT Public Library (via Bibliomation), using my personal Goodreads list, but methods could easily be added to generalize this. Please raise a PR!

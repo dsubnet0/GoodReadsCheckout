@@ -1,17 +1,24 @@
+from typing import List
+
 import requests
 from bs4 import BeautifulSoup
 
-
 BASE_URL =  url = f'https://southbury.biblio.org/eg/opac/results?query='
-# identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
-  
 
-class Library():
 
-    def __init__(self, verbose=False):
-        self.base_url = BASE_URL
+class LibraryDB():
+
+    def __init__(self, base_url=None, verbose=False):
+        if base_url:
+            self._base_url = base_url
+        else:
+            self._base_url = BASE_URL
         self.verbose = verbose
-    
+
+    @property
+    def base_url(self):
+        return self._base_url
+
 
     def get_book(self, title: str, isbn: str, format: str) -> str:
         isbn_result = self._query_library_by_isbn(isbn, format)
@@ -32,12 +39,12 @@ class Library():
     def _query_library_by_isbn(self, isbn: str, format: str):
         url = self._get_search_url_isbn(isbn=isbn, format=format)
         return self._query_library(url)
-    
+
 
     def _query_library_by_title(self, title: str, format: str):
         url = self._get_search_url_title(title=title, format=format)
         return self._query_library(url)
-    
+
     def _query_library(self, url):
         if self.verbose: print(url)
         try:
@@ -56,8 +63,11 @@ class Library():
     def _get_search_url_title(self, title: str, format: str) -> str:
         return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
-    
-    def _parse_library_results(self, page):
+
+    def _parse_library_results(self, page) -> List:
+        '''
+        Returns list of {title, availability, call_number} objects
+        '''
         soup = BeautifulSoup(page.content, 'html.parser')
         records = []
         for table in soup.find_all('div', id='result_table_div'):

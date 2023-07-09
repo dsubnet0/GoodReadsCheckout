@@ -1,7 +1,7 @@
 import argparse
 
 from GoodReads import GoodReads
-from Library import Library
+from library_db import LibraryDB
 from query_webpage import query_southbury_library_by_isbn
 from query_api import query_rakuten_by_isbn13
 
@@ -27,7 +27,7 @@ def print_rakuten_results(isbn13: str):
             print(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
     return titles_hit
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--books', help='Search for regular books', action='store_true')
     parser.add_argument('--ebooks', help='Search for ebooks', action='store_true')
@@ -46,8 +46,8 @@ if __name__ == '__main__':
         title = book_dict['title']
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
-        my_library = Library(verbose=args.verbose)
         if args.books:
+            my_library = LibraryDB(verbose=args.verbose)
             library_result = my_library.get_book(title=title, isbn=isbn, format='book')
             if library_result:
                 print(library_result)

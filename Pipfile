@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 bandit = "*"
+mock = "*"
+flake8 = "*"
 
 [packages]
 requests = "*"

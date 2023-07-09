@@ -1,3 +1,8 @@
 {
-    "python.pythonPath": "C:\\Users\\dsubn\\.virtualenvs\\GoodReadsCheckout-bBf6aNWP\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\dsubn\\.virtualenvs\\GoodReadsCheckout-bBf6aNWP\\Scripts\\python.exe",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

@@ -1,16 +1,30 @@
 import argparse
 
-from query_webpage import query_southbury_library_by_isbn, get_goodreads_list
+from GoodReads import GoodReads
+from library_db import LibraryDB
+from query_webpage import query_southbury_library_by_isbn
+from query_api import query_rakuten_by_isbn13
 
-def query_library_by_isbn(isbn: str, format: str = 'book'):
+
+def print_library_results(isbn: str, format: str = 'book'):
     titles_hit = 0
-    if args.verbose: print(f'searching for {isbn} ({format})...')
+    if args.verbose: print(f'searching library for {isbn} ({format})...')
     results = query_southbury_library_by_isbn(isbn, format)
     if len(results) > 0:
         print(f'\n{isbn} ({format}):')
         titles_hit += 1
         for r in results:
             print(' | '.join(r.values()))
+    return titles_hit
+
+def print_rakuten_results(isbn13: str):
+    titles_hit = 0
+    if args.verbose: print(f'searching rakuten for {isbn13}...')
+    results = query_rakuten_by_isbn13(isbn13, args.verbose)
+    if len(results) > 0 and len(results['Items']) > 0:
+        titles_hit += 1
+        for r in results['Items']:
+            print(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
     return titles_hit
 
 if __name__ == '__main__':
@@ -24,13 +38,26 @@ if __name__ == '__main__':
     titles_considered = 0
     titles_hit = 0
     page = 0
-    for book_dict in get_goodreads_list(user_string='3696598-doug', verbose=args.verbose):
+
+    my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
+
+    for book_dict in my_goodreads.toread_list:
+        if args.verbose: print(book_dict)
+        title = book_dict['title']
         isbn = book_dict['isbn']
+        isbn13 = book_dict['isbn13']
         if args.books:
-            titles_hit += query_library_by_isbn(isbn, 'book')
+            my_library = LibraryDB(verbose=args.verbose)
+            library_result = my_library.get_book(title=title, isbn=isbn, format='book')
+            if library_result:
+                print(library_result)
+                titles_hit += 1
         if args.ebooks:
-            titles_hit += query_library_by_isbn(isbn, 'ebook')
+            titles_hit += print_library_results(isbn, 'ebook')
+            if isbn13:
+                titles_hit += print_rakuten_results(isbn13)
         titles_considered += 1
+        if args.verbose: print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

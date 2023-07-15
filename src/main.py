@@ -17,15 +17,6 @@ def print_library_results(isbn: str, format: str = 'book'):
             print(' | '.join(r.values()))
     return titles_hit
 
-def print_rakuten_results(isbn13: str):
-    titles_hit = 0
-    if args.verbose: print(f'searching rakuten for {isbn13}...')
-    results = query_rakuten_by_isbn13(isbn13, args.verbose)
-    if len(results) > 0 and len(results['Items']) > 0:
-        titles_hit += 1
-        for r in results['Items']:
-            print(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
-    return titles_hit
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

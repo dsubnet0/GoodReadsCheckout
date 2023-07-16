@@ -1,5 +1,6 @@
 import requests
 from typing import Dict, List
+from urllib.parse import quote
 
 
 class RakutenQuerier():
@@ -10,7 +11,15 @@ class RakutenQuerier():
 
     def query_by_isbn13(self, isbn13: str, verbose=False) -> Dict:
         url = f'{self.base_url}?applicationId={self.application_id}&itemNumber={isbn13}'
+        return self._query_rakuten_api(url, verbose)
+
+    def query_by_title(self, title: str, verbose=False) -> Dict:
+        url = f'{self.base_url}?applicationId={self.application_id}&title={quote(title)}'
+        return self._query_rakuten_api(url, verbose)
+
+    def _query_rakuten_api(self, url: str, verbose=False) -> Dict:
         if verbose: print(url)
+        result = None
         try:
             result = requests.get(url)
         except Exception as e:
@@ -19,6 +28,7 @@ class RakutenQuerier():
             print('Some problem with Rakuten API request')
             return None
         return result.json()
+
 
     def format_results(self, results: Dict) -> List:
         '''

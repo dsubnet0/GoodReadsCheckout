@@ -3,7 +3,7 @@ import argparse
 from GoodReads import GoodReads
 from library_db import LibraryDB
 from query_webpage import query_southbury_library_by_isbn
-from query_api import query_rakuten_by_isbn13
+from rakuten_querier import RakutenQuerier
 
 
 def print_library_results(isbn: str, format: str = 'book'):
@@ -31,6 +31,9 @@ if __name__ == '__main__':
     page = 0
 
     my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
+    rakuten_application_id = 1093196333123354205
+    rakuten_base_url = f'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20170426'
+    rq = RakutenQuerier(rakuten_base_url, rakuten_application_id, verbose=args.verbose)
 
     for book_dict in my_goodreads.toread_list:
         if args.verbose: print(book_dict)
@@ -44,9 +47,10 @@ if __name__ == '__main__':
                 print(library_result)
                 titles_hit += 1
         if args.ebooks:
-            titles_hit += print_library_results(isbn, 'ebook')
+            # titles_hit += print_library_results(isbn, 'ebook')
             if isbn13:
-                titles_hit += print_rakuten_results(isbn13)
+                print(rq.format_results(rq.query_by_isbn13(isbn13)))
+                titles_hit += len(rq.query_by_isbn13(isbn13))
         titles_considered += 1
         if args.verbose: print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):

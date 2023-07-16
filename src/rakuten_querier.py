@@ -5,20 +5,21 @@ from urllib.parse import quote
 
 class RakutenQuerier():
 
-    def __init__(self, base_url: str, application_id: int):
+    def __init__(self, base_url: str, application_id: int, verbose: bool = False):
         self.base_url = base_url
         self.application_id = application_id
+        self.verbose = verbose
 
-    def query_by_isbn13(self, isbn13: str, verbose=False) -> Dict:
+    def query_by_isbn13(self, isbn13: str) -> Dict:
         url = f'{self.base_url}?applicationId={self.application_id}&itemNumber={isbn13}'
-        return self._query_rakuten_api(url, verbose)
+        return self._query_rakuten_api(url)
 
-    def query_by_title(self, title: str, verbose=False) -> Dict:
+    def query_by_title(self, title: str) -> Dict:
         url = f'{self.base_url}?applicationId={self.application_id}&title={quote(title)}'
-        return self._query_rakuten_api(url, verbose)
+        return self._query_rakuten_api(url)
 
-    def _query_rakuten_api(self, url: str, verbose=False) -> Dict:
-        if verbose: print(url)
+    def _query_rakuten_api(self, url: str) -> Dict:
+        if self.verbose: print(url)
         result = None
         try:
             result = requests.get(url)

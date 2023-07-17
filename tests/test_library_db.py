@@ -1,5 +1,4 @@
-import pytest
-from mock import patch, Mock
+from mock import Mock
 from src.library_db import LibraryDB
 
 def test_init():

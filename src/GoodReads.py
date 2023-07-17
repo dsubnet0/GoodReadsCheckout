@@ -10,9 +10,9 @@ class GoodReads():
 
     @property
     def toread_list(self):
-        """
+        '''
         An array of (title,isbn,isbn13) dicts
-        """
+        '''
         if self._toread_list:
             return self._toread_list
         # else
@@ -32,7 +32,7 @@ class GoodReads():
             if not page:
                 print('Some problem with the GR request')
                 return records
-            
+
             parsed_results = self._parse_fields_from_results(page)
             if parsed_results:
                 records.extend(parsed_results)

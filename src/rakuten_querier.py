@@ -1,6 +1,7 @@
-import requests
 from typing import Dict, List
 from urllib.parse import quote
+
+import requests
 
 
 class RakutenQuerier():
@@ -31,16 +32,17 @@ class RakutenQuerier():
         return result.json()
 
 
-    def format_results(self, results: Dict) -> List:
+    def format_results(self, results: Dict, limit: int = 3) -> List:
         '''
         Returns a list of neat result strings, ready to be printed
         '''
-        titles_hit = 0
-        if len(results) > 0 and len(results['Items']) > 0:
-            titles_hit += 1
+        result_string_list = []
+        result_count = 0
+        if len(results) > 0 and len(results['Items']) > 0 and result_count < limit:
             for r in results['Items']:
-                print(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
-        return titles_hit
+                result_string_list.append(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
+                result_count += 1
+        return result_string_list
 
 
 if __name__ == '__main__':

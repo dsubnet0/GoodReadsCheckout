@@ -47,12 +47,21 @@ if __name__ == '__main__':
                 print(library_result)
                 titles_hit += 1
         if args.ebooks:
-            # titles_hit += print_library_results(isbn, 'ebook')
             if isbn13:
-                print(rq.format_results(rq.query_by_isbn13(isbn13)))
-                titles_hit += len(rq.query_by_isbn13(isbn13))
+                result = rq.query_by_isbn13(isbn13)
+                if result['count'] > 0:
+                    if args.verbose: print('results found by isbn13')
+                    print(rq.format_results(result))
+                    titles_hit += len(result)
+                else:
+                    if args.verbose: 'Falling back to querying by title'
+                    result = rq.query_by_title(title)
+                    if result['count'] > 0:
+                        if args.verbose: 'results found by title'
+                        print(rq.format_results(result))
+                        titles_hit += len(result)
         titles_considered += 1
-        if args.verbose: print('')
+        print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

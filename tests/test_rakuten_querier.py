@@ -46,3 +46,24 @@ def test_query_by_title(mock_requests, rq):
     # Assert
     mock_requests.get.assert_called_once_with('foo?applicationId=0&title=bar%20baz')
     assert result == {'test':'result'}
+
+
+def test_format_results(rq):
+    # Arrange
+    test_query_result = {
+        'Items':
+            [
+                {
+                    'Item': {
+                        'title': 'title1',
+                        'itemUrl': 'url1'
+                    }
+                }
+            ]
+        }
+
+    # Act
+    formatted_results = rq.format_results(test_query_result)
+
+    # Assert
+    assert formatted_results == ['title1 - url1']

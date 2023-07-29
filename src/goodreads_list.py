@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-class GoodReads():
+class GoodReadsList():
 
     def __init__(self, user_string: str, verbose: bool = None):
         self.user_string = user_string
@@ -69,7 +69,7 @@ class GoodReads():
         return page_results
 
 
-    def _get_url(self, page_number=None):
+    def get_url(self, page_number=None):
         if page_number:
             page_number_clause = f'page={page_number}&'
         else:

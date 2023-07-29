@@ -1,6 +1,6 @@
 import argparse
 
-from GoodReads import GoodReads
+from goodreads_list import GoodReadsList
 from library_db import LibraryDB
 from query_webpage import query_southbury_library_by_isbn
 from rakuten_querier import RakutenQuerier
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     titles_hit = 0
     page = 0
 
-    my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
+    my_goodreads = GoodReadsList(user_string='3696598-doug', verbose=args.verbose)
     rakuten_application_id = 1093196333123354205
     rakuten_base_url = f'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20170426'
     rq = RakutenQuerier(rakuten_base_url, rakuten_application_id, verbose=args.verbose)

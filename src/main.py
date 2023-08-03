@@ -2,20 +2,7 @@ import argparse
 
 from goodreads_list import GoodReadsList
 from library_db import LibraryDB
-from query_webpage import query_southbury_library_by_isbn
 from rakuten_querier import RakutenQuerier
-
-
-def print_library_results(isbn: str, format: str = 'book'):
-    titles_hit = 0
-    if args.verbose: print(f'searching library for {isbn} ({format})...')
-    results = query_southbury_library_by_isbn(isbn, format)
-    if len(results) > 0:
-        print(f'\n{isbn} ({format}):')
-        titles_hit += 1
-        for r in results:
-            print(' | '.join(r.values()))
-    return titles_hit
 
 
 if __name__ == '__main__':
@@ -56,7 +43,7 @@ if __name__ == '__main__':
                 else:
                     if args.verbose: 'Falling back to querying by title'
                     result = rq.query_by_title(title)
-                    if result['count'] > 0:
+                    if result and result['count'] > 0:
                         if args.verbose: 'results found by title'
                         print(rq.format_results(result))
                         titles_hit += len(result)

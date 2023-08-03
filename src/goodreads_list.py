@@ -23,7 +23,7 @@ class GoodReadsList():
         while records_in_page > 0:
             records_in_page = 0
             if self.verbose: print(f'Fetching page {page_number}')
-            url = self._get_url(page_number=page_number)
+            url = self.get_url(page_number=page_number)
             if self.verbose: print(url)
             try:
                 page = requests.get(url)

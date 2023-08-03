@@ -12,10 +12,14 @@ class RakutenQuerier():
         self.verbose = verbose
 
     def query_by_isbn13(self, isbn13: str) -> Dict:
+        if self.verbose:
+            print(f'Querying for {isbn13}')
         url = f'{self.base_url}?applicationId={self.application_id}&itemNumber={isbn13}'
         return self._query_rakuten_api(url)
 
     def query_by_title(self, title: str) -> Dict:
+        if self.verbose:
+            print(f'Querying for {title}')
         url = f'{self.base_url}?applicationId={self.application_id}&title={quote(title)}'
         return self._query_rakuten_api(url)
 
@@ -32,14 +36,15 @@ class RakutenQuerier():
         return result.json()
 
 
-    def format_results(self, results: Dict, limit: int = 3) -> List:
+    def format_results(self, results: Dict, limit: int = 1) -> List:
         '''
         Returns a list of neat result strings, ready to be printed
         '''
         result_string_list = []
         result_count = 0
-        if len(results) > 0 and len(results['Items']) > 0 and result_count < limit:
+        if len(results) > 0 and len(results['Items']) > 0:
             for r in results['Items']:
+                if result_count >= limit: break
                 result_string_list.append(f'{r["Item"]["title"]} - {r["Item"]["itemUrl"]}')
                 result_count += 1
         return result_string_list

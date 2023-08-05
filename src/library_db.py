@@ -24,15 +24,14 @@ class LibraryDB():
         isbn_result = self._query_library_by_isbn(isbn, format)
         result_string = ''
         if len(isbn_result) > 0:
-            result_string += f'\n\n{isbn} ({format}):'
+            result_string += f'\n{isbn} ({format}):'
             for r in isbn_result:
                 result_string += '\n'+'|'.join(r.values())
         else:
             title_result = self._query_library_by_title(title, format)
             if len(title_result) > 0:
                 result_string += f'\n\n{title} ({format}):'
-                for r in title_result:
-                    result_string += '\n'+'|'.join(r.values())
+                result_string += '\n'+'|'.join(title_result[0].values())
         return result_string
 
 
@@ -46,6 +45,9 @@ class LibraryDB():
         return self._query_library(url)
 
     def _query_library(self, url):
+        '''
+        Returns list of {title, availability, call_number} objects
+        '''
         if self.verbose: print(url)
         try:
             page = requests.get(url)

@@ -1,13 +1,10 @@
 from mock import Mock
 from src.library_db import LibraryDB
-
-def test_init():
-    ldb = LibraryDB(base_url='foo')
-    assert type(ldb) is LibraryDB
-    assert ldb.base_url == 'foo'
+import pytest
 
 
-def test_get_book_by_isbn():
+@pytest.fixture()
+def query_result():
     query_result = [
         {
             'title': 'title1',
@@ -15,18 +12,51 @@ def test_get_book_by_isbn():
             'call_number': 'call_number1'
         }
     ]
+    yield query_result
+
+
+def test_init():
+    ldb = LibraryDB(base_url='foo')
+    assert type(ldb) is LibraryDB
+    assert ldb.base_url == 'foo'
+
+
+def test_get_book_by_isbn(query_result):
     ldb = LibraryDB(base_url='foo')
     ldb._query_library_by_isbn = Mock(return_value=query_result)
-    ldb._query_library_by_title = Mock()
-    ldb.get_book('title1', 'isbn1', 'format1')
+    ldb._query_library_by_title = Mock(return_value=[])
+
+    book_result_string = ldb.get_book('title1', 'isbn1', 'format1')
+
     ldb._query_library_by_isbn.assert_called_once_with('isbn1', 'format1')
     ldb._query_library_by_title.assert_not_called()
+    assert book_result_string == '\n\nisbn1 (format1):\ntitle1|availability1|call_number1'
 
 
-def test_get_book_by_title():
+def test_get_book_by_title(query_result):
     ldb = LibraryDB(base_url='foo')
     ldb._query_library_by_isbn = Mock(return_value=[])
-    ldb._query_library_by_title = Mock(return_value=[])
-    ldb.get_book('title1', 'isbn1', 'format1')
+    ldb._query_library_by_title = Mock(return_value=query_result)
+
+    book_result_string = ldb.get_book('title1', 'isbn1', 'format1')
+
     ldb._query_library_by_isbn.assert_called_once_with('isbn1', 'format1')
     ldb._query_library_by_title.assert_called_once_with('title1', 'format1')
+    assert book_result_string == '\ntitle1 (format1):\ntitle1|availability1|call_number1'
+
+
+def test_get_book_by_title_multiple(query_result):
+    '''
+    If a title search turns up multiple results, only return the first one
+    '''
+    multi_result_list = query_result + query_result + query_result
+    ldb = LibraryDB(base_url='foo')
+    ldb._query_library_by_isbn = Mock(return_value=[])
+    ldb._query_library_by_title = Mock(return_value=multi_result_list)
+
+
+    book_result_string = ldb.get_book('title1', 'isbn1', 'format1')
+
+    ldb._query_library_by_isbn.assert_called_once_with('isbn1', 'format1')
+    ldb._query_library_by_title.assert_called_once_with('title1', 'format1')
+    assert book_result_string == '\ntitle1 (format1):\ntitle1|availability1|call_number1'

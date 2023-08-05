@@ -48,7 +48,6 @@ if __name__ == '__main__':
                         print(rq.format_results(result))
                         titles_hit += len(result)
         titles_considered += 1
-        print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

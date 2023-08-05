@@ -48,6 +48,24 @@ def test_query_by_title(mock_requests, rq):
     assert result == {'test':'result'}
 
 
+def test_get_book_by_isbn():
+    rq = RakutenQuerier('base_url', 'app_id')
+    rq.query_by_isbn13 = MagicMock(return_value=[])
+    rq.query_by_title = MagicMock(return_value=[])
+    rq.get_book('title1', 'isbn1')
+    rq.query_by_isbn13.assert_called_once_with('isbn1')
+    rq.query_by_title.assert_not_called()
+
+
+def test_get_book_by_title():
+    rq = RakutenQuerier('base_url', 'app_id')
+    rq.query_by_isbn13 = MagicMock(return_value=[])
+    rq.query_by_title = MagicMock(return_value=[])
+    rq.get_book('title1', 'isbn1')
+    rq.query_by_isbn13.assert_called_once_with('isbn1')
+    rq.query_by_title.assert_called_once_with('title1')
+
+
 def test_format_results(rq):
     # Arrange
     test_query_result = {

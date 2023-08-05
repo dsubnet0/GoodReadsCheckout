@@ -11,6 +11,21 @@ class RakutenQuerier():
         self.application_id = application_id
         self.verbose = verbose
 
+    def get_book(self, title: str, isbn13: str) -> str:
+        isbn_result = self.query_by_isbn13(isbn13)
+        result_string = ''
+        if len(isbn_result) > 0:
+            result_string += f'\n\n{isbn13}:'
+            for r in isbn_result:
+                result_string += '\n'+'|'.join(r.values())
+        else:
+            title_result = self.query_by_title(title)
+            if len(title_result) > 0:
+                result_string += f'\n\n{title} ({format}):'
+                for r in title_result:
+                    result_string += '\n'+'|'.join(r.values())
+        return result_string
+
     def query_by_isbn13(self, isbn13: str) -> Dict:
         if self.verbose:
             print(f'Querying for {isbn13}')

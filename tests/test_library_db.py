@@ -30,7 +30,7 @@ def test_get_book_by_isbn(query_result):
 
     ldb._query_library_by_isbn.assert_called_once_with('isbn1', 'format1')
     ldb._query_library_by_title.assert_not_called()
-    assert book_result_string == '\n\nisbn1 (format1):\ntitle1|availability1|call_number1'
+    assert book_result_string == '\nisbn1 (format1):\ntitle1|availability1|call_number1'
 
 
 def test_get_book_by_title(query_result):

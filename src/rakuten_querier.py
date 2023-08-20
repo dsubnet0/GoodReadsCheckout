@@ -27,6 +27,9 @@ class RakutenQuerier():
         return result_string
 
     def query_by_isbn13(self, isbn13: str) -> Dict:
+        '''
+        returns a dicts something like {title: '', url: ''}
+        '''
         if self.verbose:
             print(f'Querying for {isbn13}')
         url = f'{self.base_url}?applicationId={self.application_id}&itemNumber={isbn13}'

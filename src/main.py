@@ -36,7 +36,8 @@ if __name__ == '__main__':
         if args.ebooks:
             if isbn13:
                 result = rq.query_by_isbn13(isbn13)
-                if result['count'] > 0:
+                if result and result['count'] > 0:
+                    print('')
                     if args.verbose: print('results found by isbn13')
                     print(rq.format_results(result))
                     titles_hit += len(result)
@@ -44,6 +45,7 @@ if __name__ == '__main__':
                     if args.verbose: 'Falling back to querying by title'
                     result = rq.query_by_title(title)
                     if result and result['count'] > 0:
+                        print('')
                         if args.verbose: 'results found by title'
                         print(rq.format_results(result))
                         titles_hit += len(result)

@@ -30,7 +30,7 @@ class LibraryDB():
         else:
             title_result = self._query_library_by_title(title, format)
             if len(title_result) > 0:
-                result_string += f'\n\n{title} ({format}):'
+                result_string += f'\n{title} ({format}):'
                 result_string += '\n'+'|'.join(title_result[0].values())
         return result_string
 

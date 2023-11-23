@@ -9,6 +9,15 @@ def rq():
     rq = RakutenQuerier('foo', 0)
     yield rq
 
+@pytest.fixture()
+def query_result():
+    query_result = [
+        {
+            'title': 'title1',
+            'url': 'url1'
+        }
+    ]
+    yield query_result
 
 def test_init(rq):
     assert type(rq) is RakutenQuerier
@@ -46,6 +55,24 @@ def test_query_by_title(mock_requests, rq):
     # Assert
     mock_requests.get.assert_called_once_with('foo?applicationId=0&title=bar%20baz')
     assert result == {'test':'result'}
+
+
+def test_get_book_by_isbn(rq, query_result):
+    # rq = RakutenQuerier('base_url', 'app_id')
+    rq.query_by_isbn13 = MagicMock(return_value=query_result)
+    rq.query_by_title = MagicMock(return_value=[])
+    rq.get_book('title1', 'isbn1')
+    rq.query_by_isbn13.assert_called_once_with('isbn1')
+    rq.query_by_title.assert_not_called()
+
+
+def test_get_book_by_title():
+    rq = RakutenQuerier('base_url', 'app_id')
+    rq.query_by_isbn13 = MagicMock(return_value=[])
+    rq.query_by_title = MagicMock(return_value=[])
+    rq.get_book('title1', 'isbn1')
+    rq.query_by_isbn13.assert_called_once_with('isbn1')
+    rq.query_by_title.assert_called_once_with('title1')
 
 
 def test_format_results(rq):

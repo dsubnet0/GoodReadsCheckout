@@ -1,21 +1,8 @@
 import argparse
 
-from GoodReads import GoodReads
+from goodreads_list import GoodReadsList
 from library_db import LibraryDB
-from query_webpage import query_southbury_library_by_isbn
 from rakuten_querier import RakutenQuerier
-
-
-def print_library_results(isbn: str, format: str = 'book'):
-    titles_hit = 0
-    if args.verbose: print(f'searching library for {isbn} ({format})...')
-    results = query_southbury_library_by_isbn(isbn, format)
-    if len(results) > 0:
-        print(f'\n{isbn} ({format}):')
-        titles_hit += 1
-        for r in results:
-            print(' | '.join(r.values()))
-    return titles_hit
 
 
 if __name__ == '__main__':
@@ -30,7 +17,7 @@ if __name__ == '__main__':
     titles_hit = 0
     page = 0
 
-    my_goodreads = GoodReads(user_string='3696598-doug', verbose=args.verbose)
+    my_goodreads = GoodReadsList(user_string='3696598-doug', verbose=args.verbose)
     rakuten_application_id = 1093196333123354205
     rakuten_base_url = f'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20170426'
     rq = RakutenQuerier(rakuten_base_url, rakuten_application_id, verbose=args.verbose)
@@ -49,19 +36,20 @@ if __name__ == '__main__':
         if args.ebooks:
             if isbn13:
                 result = rq.query_by_isbn13(isbn13)
-                if result['count'] > 0:
+                if result and result['count'] > 0:
+                    print('')
                     if args.verbose: print('results found by isbn13')
                     print(rq.format_results(result))
                     titles_hit += len(result)
                 else:
                     if args.verbose: 'Falling back to querying by title'
                     result = rq.query_by_title(title)
-                    if result['count'] > 0:
+                    if result and result['count'] > 0:
+                        print('')
                         if args.verbose: 'results found by title'
                         print(rq.format_results(result))
                         titles_hit += len(result)
         titles_considered += 1
-        print('')
         if args.number_of_hits and titles_hit >= int(args.number_of_hits):
             break
     print(f'titles searched: {str(titles_considered)}')

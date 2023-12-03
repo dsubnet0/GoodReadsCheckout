@@ -21,13 +21,15 @@ class LibraryDB():
 
 
     def get_book(self, title: str, isbn: str, format: str) -> str:
-        isbn_result = self._query_library_by_isbn(isbn, format)
         result_string = ''
-        if len(isbn_result) > 0:
-            result_string += f'\n{isbn} ({format}):'
-            for r in isbn_result:
-                result_string += '\n'+'|'.join(r.values())
-        else:
+        if isbn and isbn != '':
+            isbn_result = self._query_library_by_isbn(isbn, format)
+            if len(isbn_result) > 0:
+                result_string += f'\n{isbn} ({format}):'
+                for r in isbn_result:
+                    result_string += '\n'+'|'.join(r.values())
+        if result_string == '' and title and title != '':
+            title = title.split('\n')[0]
             title_result = self._query_library_by_title(title, format)
             if len(title_result) > 0:
                 result_string += f'\n{title} ({format}):'

@@ -50,7 +50,21 @@ def test_get_book_by_title_multiple(query_result, ldb):
     '''
     If a title search turns up multiple results, only return the first one
     '''
-    multi_result_list = query_result + query_result + query_result
+    query_result2 = [
+        {
+            'title': 'title2',
+            'availability': 'availability2',
+            'call_number': 'call_number2'
+        }
+    ]
+    query_result3 = [
+        {
+            'title': 'title3',
+            'availability': 'availability3',
+            'call_number': 'call_number3'
+        }
+    ]
+    multi_result_list = query_result + query_result2 + query_result3
     ldb._query_library_by_isbn = Mock(return_value=[])
     ldb._query_library_by_title = Mock(return_value=multi_result_list)
 

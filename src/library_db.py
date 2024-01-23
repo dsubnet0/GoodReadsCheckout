@@ -65,7 +65,8 @@ class LibraryDB():
         return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
     def _get_search_url_title(self, title: str, format: str) -> str:
-        return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        # return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        return f'{self.base_url}title%3A%5E{title}%24&qtype=title&fi%3Asearch_format={format}'
 
 
     def _parse_library_results(self, page) -> List:

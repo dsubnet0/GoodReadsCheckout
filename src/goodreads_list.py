@@ -25,29 +25,46 @@ class GoodReadsList():
             if self.verbose: print(f'Fetching page {page_number}')
             url = self.get_url(page_number=page_number)
             if self.verbose: print(url)
+            # user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+            # headers = {'User-Agent': user_agent}
             try:
+                # page = requests.get(url, headers=headers)
                 page = requests.get(url)
             except Exception as e:
                 print(e)
+                raise e
             if not page:
                 print('Some problem with the GR request')
                 return records
 
-            parsed_results = self._parse_fields_from_results(page)
-            if parsed_results:
-                records.extend(parsed_results)
-                records_in_page += len(parsed_results)
-            if self.verbose: print(f'{len(records)} found so far')
-            page_number += 1
+            try:
+                print('PAGE:'+page)
+                parsed_results = self._parse_fields_from_results(page)
+                if parsed_results:
+                    records.extend(parsed_results)
+                    records_in_page += len(parsed_results)
+                if self.verbose: print(f'{len(records)} found so far')
+                page_number += 1
+            except Exception as e:
+                print(e)
+                raise e
         self._toread_list = records
         return self._toread_list
 
 
     def _parse_fields_from_results(self, page):
         page_results = []
-        soup = BeautifulSoup(page.content, 'html.parser')
+        soup = None
+        try:
+            print('try soup')
+            soup = BeautifulSoup(page.content, 'html.parser')
+        except Exception as e:
+            print(e)
+            raise e
         for table in soup.find_all('table', id='books'):
+            print('first loop')
             for row in table.find_all('tr'):
+                print('second loop')
                 title = None
                 isbn = None
                 isbn13 = None
@@ -75,3 +92,9 @@ class GoodReadsList():
         else:
             page_number_clause = ''
         return f'https://www.goodreads.com/review/list/{self.user_string}?{page_number_clause}ref=nav_mybooks&shelf=to-read&per_page=50'
+
+
+    def get_headers(self) -> dict:
+        user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
+        headers = {'User-Agent': user_agent}
+        return headers

@@ -1,6 +1,8 @@
-from mock import Mock
-from src.library_db import LibraryDB
 import pytest
+from mock import Mock
+
+from src.library_db import LibraryDB
+
 
 @pytest.fixture()
 def ldb():

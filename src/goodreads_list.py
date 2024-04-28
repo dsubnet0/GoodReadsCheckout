@@ -25,11 +25,8 @@ class GoodReadsList():
             if self.verbose: print(f'Fetching page {page_number}')
             url = self.get_url(page_number=page_number)
             if self.verbose: print(url)
-            # user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36'
-            # headers = {'User-Agent': user_agent}
             try:
-                # page = requests.get(url, headers=headers)
-                page = requests.get(url)
+                page = requests.get(url, headers=self.get_headers())
             except Exception as e:
                 print(e)
                 raise e
@@ -86,7 +83,7 @@ class GoodReadsList():
         return page_results
 
 
-    def get_url(self, page_number=None):
+    def get_url(self, page_number=None) -> str:
         if page_number:
             page_number_clause = f'page={page_number}&'
         else:

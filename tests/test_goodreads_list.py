@@ -55,38 +55,23 @@ def test_headers_containers_useragent(grl: GoodReadsList):
     assert grl.get_headers()['User-Agent']
 
 
-# @patch('src.goodreads_list.requests.get')
-# @patch('src.goodreads_list.BeautifulSoup')
-# def test_toread_list_called_with_headers(mock_get, mock_bs, grl):
-    # Arrange
-    # mock_resp = _mock_response()
-    # mock_get.return_value = mock_resp
-
-    # mock_bs.find_all.return_value = []
-
-    # #Act
-    # grl.toread_list()
-
-    # #Assert
-    # mock_get.assert_called_once_with(grl.get_url(), grl.get_headers())
-
 @patch('src.goodreads_list.requests')
 def test_toread_list_get_exception(mock_requests, grl: GoodReadsList):
     mock_requests.get.side_effect = Exception("exception in requests.get")
 
     with pytest.raises(Exception):
-        grl.toread_list()
+        l = grl.toread_list
 
 
-# @patch('src.goodreads_list.requests')
-# @patch('src.goodreads_list.GoodReadsList._parse_fields_from_results')
-# def test_toread_list_called_with_headers(mock_parse, mock_requests, grl):
-#     mock_resp = _mock_response()
-#     mock_requests.get.return_value = 'TEST'
+@patch('src.goodreads_list.requests')
+@patch('src.goodreads_list.GoodReadsList._parse_fields_from_results')
+def test_toread_list_called_with_headers(mock_parse, mock_requests, grl):
+    mock_requests.get.return_value = 'TEST'
+    mock_parse.return_value = []
 
-#     mock_parse.return_value = []
+    l = grl.toread_list
 
-#     grl.toread_list()
-
-
-#     mock_requests.get.assert_called_once_with(grl.get_url(), grl.get_headers())
+    mock_requests.get.assert_called_once_with(
+        grl.get_url(page_number=1),
+        headers=grl.get_headers()
+    )

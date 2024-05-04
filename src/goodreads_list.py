@@ -37,7 +37,6 @@ class GoodReadsList():
                 return records
 
             try:
-                print('PAGE:'+page)
                 parsed_results = self._parse_fields_from_results(page)
                 if parsed_results:
                     records.extend(parsed_results)
@@ -55,15 +54,12 @@ class GoodReadsList():
         page_results = []
         soup = None
         try:
-            print('try soup')
             soup = BeautifulSoup(page.content, 'html.parser')
         except Exception as e:
             print(e)
             raise e
         for table in soup.find_all('table', id='books'):
-            print('first loop')
             for row in table.find_all('tr'):
-                print('second loop')
                 title = None
                 isbn = None
                 isbn13 = None

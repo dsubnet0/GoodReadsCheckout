@@ -21,13 +21,15 @@ class LibraryDB():
 
 
     def get_book(self, title: str, isbn: str, format: str) -> str:
-        isbn_result = self._query_library_by_isbn(isbn, format)
         result_string = ''
-        if len(isbn_result) > 0:
-            result_string += f'\n{isbn} ({format}):'
-            for r in isbn_result:
-                result_string += '\n'+'|'.join(r.values())
-        else:
+        if isbn and isbn != '':
+            isbn_result = self._query_library_by_isbn(isbn, format)
+            if len(isbn_result) > 0:
+                result_string += f'\n{isbn} ({format}):'
+                for r in isbn_result:
+                    result_string += '\n'+'|'.join(r.values())
+        if result_string == '' and title and title != '':
+            title = title.split('\n')[0]
             title_result = self._query_library_by_title(title, format)
             if len(title_result) > 0:
                 result_string += f'\n{title} ({format}):'
@@ -63,7 +65,8 @@ class LibraryDB():
         return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
     def _get_search_url_title(self, title: str, format: str) -> str:
-        return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        # return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        return f'{self.base_url}title%3A%5E{title}%24&qtype=title&fi%3Asearch_format={format}'
 
 
     def _parse_library_results(self, page) -> List:

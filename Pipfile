@@ -17,4 +17,4 @@ beautifulsoup4 = "*"
 dumper = "*"
 
 [requires]
-python_version = "3"
+python_version = "3.8"

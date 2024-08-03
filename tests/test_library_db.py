@@ -102,3 +102,11 @@ def test_get_book_by_title_newline(ldb):
 
     ldb._query_library_by_isbn.assert_not_called()
     ldb._query_library_by_title.assert_called_once_with('title1', 'format1')
+
+
+def test_get_search_url_title(ldb):
+    '''
+    When searching by title, only search for ^TITLE$
+    '''
+    assert ldb._get_search_url_title('title1','format1') == \
+        'foo^title1$&qtype=title&fi%3Asearch_format=format1&locg=89&detail_record_view=0'

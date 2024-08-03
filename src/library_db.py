@@ -58,19 +58,17 @@ class LibraryDB():
         if not page:
             print('Some problem with library request')
             return None
-        if self.verbose: print(f'RESPONSE: \n{page.content}')
+        # if self.verbose: print(f'RESPONSE: \n{page.content}')
         return self._parse_library_results(page)
 
 
     def _get_search_url_isbn(self, isbn: str, format: str) -> str:
         return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
 
-    def _get_search_url_title(self, title: str, format: str) -> str:
-        # return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
-        return f'{self.base_url}title%3A%5E{title}%24&qtype=title&fi%3Asearch_format={format}'
 
-        # return f'{self.base_url}=%28title%3A{title}+%26%26+author%3A{author}%29&qtype=keyword&fi%3Asearch_format={format}'
-        # https://southbury.biblio.org/eg/opac/results?query=%28title%3Aborderline+%26%26+author%3Ablock%29&qtype=keyword&fi%3Asearch_format=book&locg=89&detail_record_view=ARRAY%280x55ae96d92f80%29&_adv=1&page=0&sort=poprel
+    def _get_search_url_title(self, title: str, format: str) -> str:
+        # return f'{self.base_url}title%3A%5E{title}%24&qtype=title&fi%3Asearch_format={format}'
+        return f'{self.base_url}^{title}$&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0'
 
 
     def _parse_library_results(self, page) -> List:
@@ -93,10 +91,9 @@ class LibraryDB():
 
 
 if __name__ == '__main__':
-    ldb = LibraryDB(base_url=BASE_URL, verbose=True)
-    # print(ldb._get_search_url_title(title='Borderline', format='book'))
-    # print(ldb._get_search_url_isbn(isbn='9781783290574', format='book'))
-    # print(ldb._get_search_url_isbn(isbn='9781781167779', format='book'))
+    ldb = LibraryDB(base_url=BASE_URL, verbose=False)
 
-    print(ldb._query_library_by_title('Borderline', 'book'))
     # print(ldb._query_library_by_isbn('9781783290574', 'book'))
+    # print(ldb._query_library_by_title('Borderline', 'book'))
+    print(ldb._get_search_url_title('Borderline', 'book'))
+    print(ldb._query_library(ldb._get_search_url_title('Borderline', 'book')))

@@ -1,0 +1,2501 @@
+
+
+
+<!DOCTYPE html>
+<html lang='en-US'>
+    <head prefix="og: http://ogp.me/ns#">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+        <!--Added bootstrap dependancies-->
+        <link rel="stylesheet" href="https://southbury.biblio.org/opac/deps/node_modules/bootstrap/dist/css/bootstrap.min.css?8e3df6">
+        <link rel="stylesheet"  href="https://southbury.biblio.org/opac/deps/node_modules/@fortawesome/fontawesome-free/css/all.css?8e3df6" />
+        <link rel="stylesheet"  href="https://southbury.biblio.org/opac/deps/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css?8e3df6" />
+        <link rel="stylesheet"  href="https://southbury.biblio.org/css/skin/default/opac/semiauto.css?8e3df6" />
+        <link rel="stylesheet" href="/eg/opac/css/style.css?8e3df6&amp;dir=ltr" />
+          <link rel="stylesheet" href="/eg/opac/css/mediaQuery.css?8e3df6" />
+
+
+
+
+
+
+
+
+        <title>               Search Results: title:^Borderline$ - Southbury Public Library</title>
+        <link rel="unapi-server" type="application/xml" title="unAPI" href="/opac/extras/unapi" />
+        <link type="application/opensearchdescription+xml" rel='search' title="Southbury Public Library OpenSearch" href="/opac/extras/opensearch/1.1/SBURY/-/osd.xml" />
+        <meta name="robots" content="noindex,follow">
+<meta property="og:title" content="Search Results: title:^Borderline$" />
+<meta property="og:site_name" content="Southbury Public Library" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script  src="https://southbury.biblio.org/opac/deps/node_modules/jquery/dist/jquery.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$("#loginModal").on('shown.bs.modal', function(){
+					$(this).find('#username_field').focus();
+				});
+                // password visibility eye
+                let btn = document.getElementById('show_password');
+                let input = document.getElementById('password_field');
+                let icon = btn.querySelector('i');
+                btn.addEventListener('click', () => {
+                    if(input.type == 'password'){
+                        input.type = 'text';
+                        icon.setAttribute('class', 'fas fa-eye');
+                        btn.setAttribute('aria-checked', 'true');
+                        input.setAttribute('aria-description', "Your password is visible!");
+                    }else {
+                        input.type = 'password';
+                        icon.setAttribute('class', 'fas fa-eye-slash');
+                        btn.setAttribute('aria-checked', 'false');
+                        input.setAttribute('aria-description', "Your password is not visible.");
+                    }
+                    input.focus();
+                });
+                let loginForm = document.getElementById('login_form');
+                loginForm.addEventListener('submit', ()=>{
+                    input.type = 'password';
+                });
+			});
+		</script>
+
+    </head>
+    <body class="tundra d-flex flex-column min-vh-100">
+        <h1 class="sr-only">Catalog</h1>
+
+       <div class="mb-3">
+
+
+<div id="header-wrap">
+<nav class="navbar navbar-expand-lg navbar-dark ">
+<!--Home-->
+  <a class="navbar-brand" href="/eg/opac/"><div id="topnav_logo"> <a href="/"><img alt="Evergreen Logo"
+            src="https://southbury.biblio.org/opac/images/small_logo89.jpg?8e3df6" /></a></div>
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+  <!--Left Links-->
+
+
+   <ul class="navbar-nav nav-fl px-3">
+
+      <li class="nav-item"><a class="nav-link" href="http://www.southburylibrary.org/">Library Website</a>      </li>
+      <!--Link 1-->
+      <li class="nav-item">
+        <a class="nav-link" href="/eg/opac/awards">Best Sellers & Award Winners</span></a>
+      </li>
+        <!--Link 2-->
+      <li class="nav-item">
+        <a class="nav-link" href="/eg/opac/nutmeg">Nutmeg Awards & Nominees</a>
+      </li>
+        <!--Link 3-->
+      <li class="nav-item">
+        <a class="nav-link" href="/eg/opac/cocba">Charter Oak Children's Book Award</a>
+      </li>
+        <!--Link 4-->
+      <li class="nav-item">
+        <a class="nav-link" href="/eg/kpac/home">Kids Catalog</a>
+
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/eg/opac/get_app">Get the App</a>
+      </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="/eg/opac/register">Request a Library Card</a>
+        </li>
+      		    </ul>
+
+    <!--Right Links-->
+    <ul class="navbar-nav ml-auto nav-fr px-3">
+      <!--If not signed in, show sign in button-->
+
+        <li class="nav-item">
+
+           <a href="#loginModal" data-toggle="modal" data-target="#loginModal" class="nav-link login">
+            Login </a>
+        </li>
+      <!--User is signed in-->
+
+</ul>
+</div>
+</nav>
+</div>
+
+<div id="subheader-wrap">
+ <div class="container-fluid">
+<div class="row">
+<div class="col">
+    <nav class="nav secondary-nav">
+
+        <a href="/eg/opac/home?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book" class="nav-link search_catalog_lbl">Basic Search</a>
+
+
+
+        <a href="/eg/opac/browse?qtype=title;fi%3Asearch_format=book" class="nav-link browse_the_catalog_lbl">Browse the Catalog</a>
+
+
+
+        <a href="/eg/opac/advanced?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book" id="home_adv_search_link" class="nav-link adv_search_catalog_lbl">Advanced Search</a>
+
+
+
+
+    </nav>
+</div>
+
+    <div class="col-auto">
+
+  <div id="basket_actions">
+  <div id="select_basket_action" class="dropdown">
+      <a href="#" class="no-dec" id="cartDropdown" data-toggle="dropdown">
+        <img id="cart_icon_image" src="https://southbury.biblio.org/images/cart-sm.png?8e3df6" alt="View Basket">
+         <div id="record_basket_count_floater">
+            <span id="record_basket_count">0</span>
+            <span class="sr-only">Records In Basket</span>
+        </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="cartDropdown">
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/mylist?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><i class="fas fa-glasses" aria-hidden="true"></i> View Basket</a>
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/mylist/move?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;entire_list=1;action=place_hold"><i class="fas fa-book" aria-hidden="true"></i> Place Holds</a>
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/mylist/print?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><i class="fas fa-print" aria-hidden="true"></i> Print Title Details</a>
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/mylist/email?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><i class="fas fa-envelope" aria-hidden="true"></i> Email Title Details</a>
+
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/myopac/lists?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;from_basket=1;move_cart_by_default=1"><i class="fas fa-list" aria-hidden="true"></i> Add Basket to Saved List</a>
+
+
+        <a class="dropdown-item" role="menuitem"  href="/eg/opac/mylist/clear?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><i class="fas fa-trash" aria-hidden="true"></i> Clear Basket</a>
+      </div>
+    </div>
+  </div>
+
+    </div>
+</div>
+</div>
+
+ </div>
+
+
+
+
+
+    <h2 class="sr-only">Search Results</h2>
+    <form action="/eg/opac/results" method="get">
+    <h3 class="sr-only">Catalog Search</h3>
+
+
+
+
+
+
+
+
+<div id="search-wrapper" class="container-fluid">
+
+
+
+    <div class="m-5">
+    <div class="row">
+     <!--Keyword-->
+        <div class="col-sm-12 col-md">
+        <span class='search_box_wrapper'>
+            <label id="search_box_label" for="search_box" class="w-100">Search:
+            <input class="form-control form-control-sm" type="search" id="search_box" name="query" aria-label="Enter search query:" value="title:^Borderline$"                     />
+            </label>
+        </span>
+        </div>
+
+        <!--Type-->
+        <div class="col-sm-12 col-md">
+        <label id="search_qtype_label" for="qtype" class="w-100">Type:
+<select class="form-control w-100" name="qtype" id="qtype"    title="Select query type:">
+        <option value='keyword'>Keyword</option>
+        <option value='title' selected="selected">Title</option>
+        <option value='jtitle'>Journal Title</option>
+        <option value='author'>Author</option>
+        <option value='subject'>Subject</option>
+        <option value='series'>Series</option>
+        <option value='bookplate'>Digital Bookplate</option>
+    </select>
+        </label>
+        </div>
+
+
+        <!-- Force next columns to break to new line below md breakpoint -->
+        <div class="w-100 d-block d-md-none"></div>
+
+         <!--Format-->
+        <div class="col-sm-12 col-md">
+        <label id="search_itype_label" for="search_itype_selector" class="w-100">Format:
+<select class="form-control form-control-sm w-100" id='search_itype_selector' name='fi:search_format' title="Select item type:">
+
+    <option value=''>All Formats</option>
+
+    <option value='book' selected="selected">All Books</option>
+
+    <option value='music'>All Music</option>
+
+    <option value='videos'>All Videos</option>
+
+    <option value='archival'>Archival material</option>
+
+    <option value='casmusic'>Audiocassette music recording</option>
+
+    <option value='blu-ray'>Blu-ray</option>
+
+    <option value='braille'>Braille</option>
+
+    <option value='casaudiobook'>Cassette audiobook</option>
+
+    <option value='cdaudiobook'>CD Audiobook</option>
+
+    <option value='cdmusic'>CD Music recording</option>
+
+    <option value='eaudio'>Downloadable audiobooks</option>
+
+    <option value='ebook'>Downloadable ebooks</option>
+
+    <option value='emag'>Downloadable magazines</option>
+
+    <option value='emusic'>Downloadable/streaming music</option>
+
+    <option value='evideo'>Downloadable/Streaming video</option>
+
+    <option value='dvd'>DVD</option>
+
+    <option value='equip'>Equipment, games, toys</option>
+
+    <option value='graphicnovel'>Graphic novels and comic books</option>
+
+    <option value='kit'>Kit or Mixed materials</option>
+
+    <option value='lpbook'>Large Print Material</option>
+
+    <option value='magazine'>Magazines</option>
+
+    <option value='manuscript'>Manuscripts</option>
+
+    <option value='map'>Map</option>
+
+    <option value='microform'>Microform</option>
+
+    <option value='mp3audio'>MP3 CD Audiobook</option>
+
+    <option value='score'>Music Score</option>
+
+    <option value='phonomusic'>Phonograph music recording</option>
+
+    <option value='phonospoken'>Phonograph spoken recording</option>
+
+    <option value='picture'>Picture</option>
+
+    <option value='playaway_views'>Playaway Views</option>
+
+    <option value='playaway'>Playaway,  Wonderbooks, Vox read-alongs</option>
+
+    <option value='preloadedaudio'>Preloaded Audio</option>
+
+    <option value='serial'>Serials and magazines</option>
+
+    <option value='software'>Software and video games</option>
+
+    <option value='vhs'>VHS</option>
+</select>
+
+        </label>
+        </div>
+
+         <!--Library-->
+        <div class="col-sm-12 col-md">
+        <label id="search_locg_label" for="search_org_selector" class="w-100">Library:
+    <select  id='search_org_selector'             title='Select search library'
+            name='locg' class="form-control w-100">
+
+
+
+            <option value='1'   class="org_unit">
+                &nbsp;Bibliomation
+            </option>
+
+
+            <option value='27'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Ansonia Public Library
+            </option>
+
+
+            <option value='183'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Babcock Library - Ashford
+            </option>
+
+
+            <option value='3'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Beacon Falls Public Library
+            </option>
+
+
+            <option value='193'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Beekley Community Library - New Hartford
+            </option>
+
+
+            <option value='31'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Bentley Memorial Library - Bolton
+            </option>
+
+
+            <option value='29'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Bethel Public Library
+            </option>
+
+
+            <option value='132'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Bolton Schools
+            </option>
+
+
+            <option value='134'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bolton High School
+            </option>
+
+
+            <option value='191'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Booth &amp; Dimock Library - Coventry
+            </option>
+
+
+            <option value='32'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Bridgeport Public Library
+            </option>
+
+
+            <option value='200'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beardsley Branch - Bridgeport
+            </option>
+
+
+            <option value='210'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pickup Locker - Beardsley Branch - Bridgeport
+            </option>
+
+
+            <option value='33'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Black Rock Branch - Bridgeport
+            </option>
+
+
+            <option value='37'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Burroughs-Saden Main - Bridgeport
+            </option>
+
+
+            <option value='36'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;East Side Branch - Bridgeport
+            </option>
+
+
+            <option value='34'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Newfield Branch - Bridgeport
+            </option>
+
+
+            <option value='35'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;North Branch - Bridgeport
+            </option>
+
+
+            <option value='39'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Brookfield Library
+            </option>
+
+
+            <option value='185'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Burnham Library - Bridgewater
+            </option>
+
+
+            <option value='67'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;C.H. Booth Library - Newtown
+            </option>
+
+
+            <option value='194'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Canterbury
+            </option>
+
+
+            <option value='196'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canterbury Elementary School
+            </option>
+
+
+            <option value='195'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canterbury Public Library
+            </option>
+
+
+            <option value='197'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dr. Helen Baldwin Middle School
+            </option>
+
+
+            <option value='189'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Chester Public Library
+            </option>
+
+
+            <option value='19'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;David M. Hunt Library - Falls Village
+            </option>
+
+
+            <option value='187'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Deep River Public Library
+            </option>
+
+
+            <option value='45'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Derby Public Library
+            </option>
+
+
+            <option value='43'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Derby Neck Library
+            </option>
+
+
+            <option value='5'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Douglas Library of Hebron
+            </option>
+
+
+            <option value='21'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Douglas Library - North Canaan
+            </option>
+
+
+            <option value='47'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Easton Public Library
+            </option>
+
+
+            <option value='61'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Edith Wheeler Memorial Library - Monroe
+            </option>
+
+
+            <option value='203'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Frank L. McGuire Maritime Library - New London
+            </option>
+
+
+            <option value='121'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Guilford Smith Library - South Windham
+            </option>
+
+
+            <option value='127'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Gunn Memorial Library - Washington
+            </option>
+
+
+            <option value='25'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Hagaman Memorial Library - East Haven
+            </option>
+
+
+            <option value='49'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Hall Memorial Library - Ellington
+            </option>
+
+
+            <option value='95'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Hotchkiss Library - Sharon
+            </option>
+
+
+            <option value='65'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Howard Whittemore Library - Naugatuck
+            </option>
+
+
+            <option value='173'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Janet Carlson Calvert Library
+            </option>
+
+
+            <option value='174'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Franklin Elementary School
+            </option>
+
+
+            <option value='175'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Janet Carlson Calvert Library - Franklin
+            </option>
+
+
+            <option value='179'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;John P. Webster Library - West Hartford
+            </option>
+
+
+            <option value='11'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Jonathan Trumbull Library - Lebanon
+            </option>
+
+
+            <option value='51'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Kent Library Association - Kent
+            </option>
+
+
+            <option value='107'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Kent Memorial Library - Suffield
+            </option>
+
+
+            <option value='53'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Killingly Library
+            </option>
+
+
+            <option value='207'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Killingworth Library Association
+            </option>
+
+
+            <option value='205'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Litchfield Historical Society - Ingraham Library
+            </option>
+
+
+            <option value='12'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Lebanon Schools
+            </option>
+
+
+            <option value='13'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lebanon Elementary School
+            </option>
+
+
+            <option value='14'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lebanon Middle School
+            </option>
+
+
+            <option value='15'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lyman Memorial High School
+            </option>
+
+
+            <option value='79'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Mark Twain Library Association - Redding
+            </option>
+
+
+            <option value='181'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Milford Public Library
+            </option>
+
+
+            <option value='85'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Minor Memorial Library - Roxbury
+            </option>
+
+
+            <option value='63'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Morris Public Library
+            </option>
+
+
+            <option value='71'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;New Milford Public Library
+            </option>
+
+
+            <option value='69'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Norfolk Library
+            </option>
+
+
+            <option value='54'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Oliver Wolcott Library
+            </option>
+
+
+            <option value='55'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oliver Wolcott Library - Litchfield
+            </option>
+
+
+            <option value='73'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Oxford Public Library
+            </option>
+
+
+            <option value='75'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Putnam Public Library
+            </option>
+
+
+            <option value='77'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Ridgefield Library
+            </option>
+
+
+            <option value='81'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Rockville Public Library
+            </option>
+
+
+            <option value='83'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Rowayton Library
+            </option>
+
+
+            <option value='87'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Salem Free Public Library
+            </option>
+
+
+            <option value='101'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Scoville Memorial Library - Salisbury
+            </option>
+
+
+            <option value='91'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Seymour Public Library
+            </option>
+
+
+            <option value='96'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Shelton
+            </option>
+
+
+            <option value='98'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plumb Memorial Library - Huntington Branch
+            </option>
+
+
+            <option value='97'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plumb Memorial Library - Shelton
+            </option>
+
+
+            <option value='105'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Sherman Library
+            </option>
+
+
+            <option value='128'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Silas Bronson Library
+            </option>
+
+
+            <option value='130'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Silas Bronson Library - Bunker Hill Branch
+            </option>
+
+
+            <option value='129'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Silas Bronson Library - Waterbury
+            </option>
+
+
+            <option value='9'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Slater Public Library - Griswold
+            </option>
+
+
+            <option value='103'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Somers Public Library
+            </option>
+
+
+            <option value='89' selected="selected"  class="org_unit">
+                &nbsp;&nbsp;&nbsp;Southbury Public Library
+            </option>
+
+
+            <option value='17'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Sprague Public Library - Baltic
+            </option>
+
+
+            <option value='93'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Stafford Library
+            </option>
+
+
+            <option value='109'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Terryville Public Library
+            </option>
+
+
+            <option value='113'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Thomaston Public Library
+            </option>
+
+
+            <option value='111'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Thompson Public Library
+            </option>
+
+
+            <option value='140'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Thompson Schools
+            </option>
+
+
+            <option value='141'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mary R Fisher School
+            </option>
+
+
+            <option value='142'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thompson Middle School
+            </option>
+
+
+            <option value='143'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tourtellotte Memorial High School
+            </option>
+
+
+            <option value='115'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Tolland Public Library
+            </option>
+
+
+            <option value='171'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Union Free Public Library
+            </option>
+
+
+            <option value='23'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Warren Public Library
+            </option>
+
+
+            <option value='119'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Weston Public Library
+            </option>
+
+
+            <option value='123'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Willimantic Public Library
+            </option>
+
+
+            <option value='7'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Windham Free Library - Windham Center
+            </option>
+
+
+            <option value='199'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Beardsley &amp; Memorial Library - Winsted
+            </option>
+
+
+            <option value='125'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Wolcott Public Library
+            </option>
+
+
+            <option value='117'   class="org_unit">
+                &nbsp;&nbsp;&nbsp;Woodbury Public Library
+            </option>
+
+    </select>        </label>
+        </div>
+
+        <!-- Force next columns to break to new line below md breakpoint -->
+        <div class="w-100 d-block d-md-none"></div>
+
+        <div class="col-auto ml-auto ml-md-1">
+        <input id="detail" type="hidden" name="detail_record_view" value="1"/>
+        <button id='search-submit-go' type="submit" class="btn btn-sm btn-opac"
+            onclick='setTimeout(function(){$("search-submit-spinner").className=""; $("search-submit-go").className="hidden";}, 2000)'><i class="fas fa-search" aria-hidden="true"></i> Search</button>
+        </div>
+        <div class="col-auto mr-auto mr-md-1">
+        <img id='search-submit-spinner' src='https://southbury.biblio.org/opac/images/progressbar_green.gif?8e3df6' style='height:16px;width:16px;' class='hidden' alt='Search In Progress'/>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+      <div class="refine_search result_block_visible">
+        <span id="filter_hits">[ <a href="#" onclick="getAdvLimits();return false;">3 filters applied</a> ]</span>
+      </div>
+
+
+
+
+
+
+
+    <script>
+    function getAdvLimits() {
+        var AdvLimitsClass = document.getElementById('adv_filter_results_block').classList;
+        if (AdvLimitsClass.contains("adv_filter_results_hide")) {
+           AdvLimitsClass.remove("adv_filter_results_hide");
+        } else {
+           AdvLimitsClass.add("adv_filter_results_hide");
+        }
+        if (AdvLimitsClass.contains("adv_filter_results_show")) {
+           AdvLimitsClass.remove("adv_filter_results_show");
+        } else {
+           AdvLimitsClass.add("adv_filter_results_show");
+        }
+     }
+     </script>
+    <!-- Canonicalized query:
+
+    core_limit(100000) badge_orgs(1,88,89) estimation_strategy(inclusion) skip_check(0) check_limit(1000) search_format(book) site(SBURY) depth(2) #CD_documentLength #CD_meanHarmonic #CD_uniqueWords (title: ^Borderline$)
+
+    -->
+    <!--
+    <div id="breadcrumb">
+        <a href="/eg/opac/home">Catalog Home</a> &gt;
+    </div>
+    -->
+</div>
+
+    <h3 class="sr-only">Additional search filters and navigation</h3>
+    <div class="almost-content-wrapper border-bottom">
+
+
+
+        <div class="container-fluid">
+
+            <div id="results_header_inner">
+
+                <div id="refine_hits" class="btn btn-secondary"><a onclick="getFacety();">Refine these results</a></div>
+                <div id="return_to_hits" class="results_header_btns"><a onclick="getResulty();">Back to results</a></div>
+
+
+            <div class="row">
+            <div class="col">
+                <div class="search-options text-center">
+                    <div class="mx-auto">
+                        <!-- ===== Drop Down ===== -->
+                        <div class="search-option my-2">
+                        <label for="opac.result.sort">Sort Results</label>
+                            <select title="Search sorting"
+    class="form-control" id='opac.result.sort'
+    name="sort" onchange='this.form.submit()'>
+    <option value=''>Sort by Relevance</option>
+    <optgroup label='Sort by Title'>
+        <option value='titlesort'>Title: A to Z</option>
+        <option value='titlesort.descending'>Title: Z to A</option>
+    </optgroup>
+    <optgroup label='Sort by Author'>
+        <option value='authorsort'>Author: A to Z</option>
+        <option value='authorsort.descending'>Author: Z to A</option>
+    </optgroup>
+    <optgroup label='Sort by Publication Date'>
+        <option value='pubdate.descending'>Date: Newest to Oldest</option>
+        <option value='pubdate'>Date: Oldest to Newest</option>
+    </optgroup>
+    <optgroup label='Sort by Popularity'>
+        <option value='popularity'>Most Popular</option>
+<!-- Sorting by least popular items first is probably not an expected
+     choice in production, but could be useful in cases where every
+     record has at least one badge value assigned and you want
+     to investigate the long tail.
+-->
+<!--
+        <option value='popularity.descending'>Least Popular</option>
+-->
+        <option value='poprel'>Popularity Adjusted Relevance</option>
+    </optgroup>
+</select>
+
+                        </div>
+                        <!-- ===== Buttons ===== -->
+                        <div class="search-option my-2">
+
+                            <a href="/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;detail_record_view=0" class="btn btn-sm btn-secondary">Show Fewer Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col">
+                    <!-- ===== Checkboxes ===== -->
+                    <div class="search-check">
+
+
+                        <div class="search-filter m-2">
+                            <label for="no_highlight">
+                            <input type="checkbox" id="no_highlight" name="no_highlight" value="1"
+                                onchange="search_modifier_onchange('no_highlight', this, true)"
+                                 />
+                            Disable Highlighting
+                            </label>
+                        </div>
+
+
+                        <div class="search-filter m-2">
+                            <label for="limit_to_available">
+                            <input type="checkbox" id="limit_to_available" name="modifier" value="available"
+                            onchange="search_modifier_onchange('available', this, true)"
+                             />
+                            Limit to Available Items
+                            </label>
+                        </div>
+
+
+                        <div class="search-filter m-2">
+                        <label for="metabib_search_modifier">
+                            <input type="checkbox" id="metabib_search_modifier"
+                                name="modifier" value="metabib"
+                                onchange="search_modifier_onchange('metabib', this, true)"
+                                 />
+                            Group By Formats and Editions
+                        </label>
+                        </div>
+
+
+
+                    <div class="search-filter m-2">
+                        <label for="depth_sel" title="Select this option to expand your results to all libraries while retaining the priority of your selected librarys holdings.">
+                            <input type="checkbox" id="depth_sel" name="depth" value="0"
+                            onchange="this.form.submit()"
+                             />
+                            Show Results from All Libraries
+                        </label>
+                    </div>
+
+
+
+                        <div class="search-filter m-2">
+                        <label for='opac.result.excludeelec'>
+                        <input type='checkbox' id='opac.result.excludeelec' name="fi:-search_format" value="electronic"
+                            onchange="exclude_onchange(this)" />
+                        Exclude Electronic Resources
+                        </label>
+                        </div>
+
+                   </div>
+                   </div>
+
+            </div>
+            </div>
+            </div>
+        </div>
+    </form>
+    <div class="mx-5">
+        <div class="row">
+            <div id="results-page" class="col">
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-12">
+
+
+
+
+<div class="results_header_nav1 py-4">
+
+
+    <nav aria-label="Page navigation">
+                <ul class='start_end_links_span pagination d-inline-flex'>
+                </ul>
+                </nav>
+
+    <span class="result_number">Results <span class="result_count_number">1</span> - <span class="result_count_number">4</span> of <span class="result_count_number">4</span>
+                <span class='padding-left-6'>(page <span class="result_count_number">1</span> of <span class="result_count_number">1</span>)
+                </span>
+    </span>
+</div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-2 d-none d-xl-block">
+        <div class="container-fluid my-3">
+<div class="facet_box_wrapper row">
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Personal Author</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BBarr%2C%20Nevada%5D' rel="nofollow" vocab="">
+                              Barr, Nevada
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BBlock%2C%20Lawrence%5D' rel="nofollow" vocab="">
+                              Block, Lawrence
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BStratton%2C%20Allan%5D' rel="nofollow" vocab="">
+                              Stratton, Allan
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Topic Subject</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BPigeon%2C%20Anna%20%28Fictitious%20character%29%5D' rel="nofollow" vocab="">
+                              Pigeon, Anna (Fictitious character)
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BRafting%20%28Sports%29%5D' rel="nofollow" vocab="">
+                              Rafting (Sports)
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BWilderness%20areas%5D' rel="nofollow" vocab="">
+                              Wilderness areas
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BFathers%20and%20sons%5D' rel="nofollow" vocab="">
+                              Fathers and sons
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+                    <a class="button"
+                      title="Show More Topic Subject Entries"
+                      href="/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;long_facet=subjecttopic#facets" rel="nofollow" vocab="">
+                      More
+                    </a>
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Series Title</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=series%7Cseriestitle%5BHard%20Case%20Crime%20book%5D' rel="nofollow" vocab="">
+                              Hard Case Crime book
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+</div> <!-- facet_box_wrapper -->
+</div>
+
+    </div>
+    <div id="result_table_div" class="border-bottom col-12 col-xl-10 px-3">
+        <div id="result_block" class="result_block_visible">
+
+            <div id="record_selector_block" class="mx-2 hidden">
+                <input type="checkbox" id="select_all_records" />
+                <label for="select_all_records">Select 1 - 4</label>
+                <span id="selected_records_summary">
+                <a href="/eg/opac/mylist?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book" class="no-dec" rel="nofollow" vocab="">
+                    <span id="selected_records_count">0
+
+                    </span>
+                            selected
+                </a></span>
+                <span id="hit_selected_record_limit" class="hidden">Reached limit!</span>
+                <a id="clear_basket" href="#">Clear basket</a>
+            </div>
+
+
+
+
+                    <div class="row" style="border-top: 1px solid grey;">
+
+                    <!--Count&Checkboxes-->
+                        <div class="col-lg-1">
+                            <div class="results_row_count">
+                                <label for="select-3000746">1</label>
+                                <input type="checkbox" id="select-3000746"
+
+                                    title="Add to Basket"
+                                    aria-label="Add to Basket"
+                                    class="result_record_selector" value="3000746" />
+
+                            </div>
+                        </div>
+                        <!--Cover Image-->
+                        <div class='col-sm-2 text-center' id="result3000746">
+                            <a href="/eg/opac/record/3000746?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><img alt=""
+                            id='item_jacket3000746' class='my-2 img-fluid'
+                            src='https://southbury.biblio.org/opac/extras/ac/jacket/large/r/3000746' style="max-height:150px;" /></a><br />
+                        </div>
+                            <!--Info-->
+                        <div class='result_table_title_cell col'>
+                            <div class="row align-items-start">
+                                <div class="result_metadata col-md-8 col-12">
+
+                                    <abbr class="unapi-id" title='tag:southbury.biblio.org,2024:biblio-record_entry/3000746'></abbr>
+
+                                    <a class='record_title search_link' id='record_3000746'
+                                        href="/eg/opac/record/3000746?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"
+                                        title="Display record details for &quot;Borderline / by Lawrence Block.&quot;">
+                                        <mark class='oils_SH title proper'>Borderline</mark>
+                                    </a>
+                                    <span class="mx-2">
+
+                                                <img alt="" src="https://southbury.biblio.org/images/format_icons/icon_format/book.png?8e3df6" />
+                                                Book
+
+                                    </span>
+
+
+                                    <div>
+
+                                        <a  title="Perform an Author Search"
+                                            class="record_author"
+                                            href="/eg/opac/results?qtype=author;fi%3Asearch_format=book;query=Block%20%20Lawrence%20" rel="nofollow" vocab="">Block, Lawrence.</a>
+
+
+                                    </div>
+
+
+
+                                        <table
+                                            role="presentation"
+                                            title="Record Holdings Summary"
+                                            class="table_no_border_space table_no_border results_info_table container-fluid">
+
+
+                                            <tr class='result_table_title_cell'>
+                                                <td valign='top'><strong>Call number:</strong></td>
+                                                <td>BLOCK</td>
+                                            </tr>
+
+                                            <!-- These fields are visible when viewing the results page in 'detailed' mode -->
+
+                                            <!-- Do not show publication-specific information on a metarecord search results page -->
+
+                                            <tr>
+                                                <td valign="top"><strong>Publisher:</strong></td>
+                                                <td>New York : Hardcase Crime, published by Titan Books, 2014.                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td valign="top"><strong>ISBN:</strong></td>
+                                                <td>9781783290574</td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td valign="top"><strong>Edition:</strong></td>
+                                                <td>First Hard Case Crime edition.                                                </td>
+                                            </tr>
+
+
+                                                <tr >
+                                                    <td valign="top"><strong>Phys. Desc.:</strong></td>
+                                                    <td>249 pages ; 24 cm</td>
+                                                </tr>
+
+
+
+                                            <tr  class='result_table_title_cell container-fluid'>
+                                                <td colspan="2">
+                                                    <table role="presentation" title="Record Holdings Details" class='container-fluid table table-hover mt-4 miniTable holdingsTable'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Location</th>
+                                                                <th>Shelving Location</th>
+                                                                <th>Call Number</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                    <tbody>
+
+                                                        <tr mobile-count="#1">
+                                                            <td mobile-title="Location"><span class="sr-only">Location </span><a target="_blank" property="offeredBy" typeof="Library" href="/eg/opac/library/SBURY"><span property="name">Southbury Public Library</span></a>
+</td>
+                                                            <td mobile-title="Shelving Location"><span class="sr-only">Shelving Location </span>Adult Fiction</td>
+                                                            <td mobile-title="Call Number"><span class="sr-only">Call Number </span>BLOCK</td>
+                                                            <td mobile-title="Status"><span class="sr-only">Status </span>Available</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                         <!-- END detail_record_view -->
+                                    </table>
+
+
+<div class="result_count">
+
+    7 of 7 copies available at Bibliomation.
+
+</div>
+<div class="result_count">
+
+</div>
+<div class="result_count">
+
+    1 of 1 copy available at Southbury Public Library.
+
+</div>
+
+
+
+
+
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="result_table_utils row">
+                                        <div class="btn-group-vertical mx-auto my-2" >
+
+
+
+
+                                        <!--Place Hold Button -->
+
+                                        <a role="button" href="/eg/opac/place_hold?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;hold_target=3000746;hold_type=T;hold_source_page=%2Feg%2Fopac%2Fresults%3Fquery%3Dtitle%253A%255EBorderline%2524%3Bqtype%3Dtitle%3Bfi%253Asearch_format%3Dbook"
+                                            title="Place Hold on Borderline / by Lawrence Block."
+                                            class="btn btn-action" rel="nofollow" vocab="">
+                                            <i class="fas fa-check" aria-hidden="true"></i>
+                                            <span class="result_place_hold">Place Hold</span>
+                                        </a>
+
+                                        <!-- eBook Buttons -->
+                                        <!--Basket and My Lists Buttons -->
+
+
+
+
+                                                <a href="/eg/opac/mylist/add?record=3000746;anchor=record_3000746" id="mylist_add_3000746"
+                                                    data-recid="3000746" data-action="add"
+                                                    role="button" class="mylist_action btn btn-action "
+                                                                                                        title="Add Borderline / by Lawrence Block. to basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                                    Add to basket
+                                                </a>
+
+                                                <a href="/eg/opac/mylist/delete?record=3000746;anchor=record_3000746" id="mylist_delete_3000746"
+                                                    data-recid="3000746" data-action="delete" role="button"
+                                                    class="mylist_action btn btn-action hidden"
+                                                    title="Remove Borderline / by Lawrence Block. from basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-minus-circle" aria-hidden="true"></i>
+                                                    Remove from basket
+                                                </a>
+
+
+
+
+
+                                        <!--Added Content - Content Cafe -->
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+
+
+                    <div class="row" style="border-top: 1px solid grey;">
+
+                    <!--Count&Checkboxes-->
+                        <div class="col-lg-1">
+                            <div class="results_row_count">
+                                <label for="select-444868">2</label>
+                                <input type="checkbox" id="select-444868"
+
+                                    title="Add to Basket"
+                                    aria-label="Add to Basket"
+                                    class="result_record_selector" value="444868" />
+
+                            </div>
+                        </div>
+                        <!--Cover Image-->
+                        <div class='col-sm-2 text-center' id="result444868">
+                            <a href="/eg/opac/record/444868?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><img alt=""
+                            id='item_jacket444868' class='my-2 img-fluid'
+                            src='https://southbury.biblio.org/opac/extras/ac/jacket/large/r/444868' style="max-height:150px;" /></a><br />
+                        </div>
+                            <!--Info-->
+                        <div class='result_table_title_cell col'>
+                            <div class="row align-items-start">
+                                <div class="result_metadata col-md-8 col-12">
+
+                                    <abbr class="unapi-id" title='tag:southbury.biblio.org,2024:biblio-record_entry/444868'></abbr>
+
+                                    <a class='record_title search_link' id='record_444868'
+                                        href="/eg/opac/record/444868?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"
+                                        title="Display record details for &quot;Borderline / Allan Stratton.&quot;">
+                                        <mark class='oils_SH title proper'>Borderline</mark>
+                                    </a>
+                                    <span class="mx-2">
+
+                                                <img alt="" src="https://southbury.biblio.org/images/format_icons/icon_format/book.png?8e3df6" />
+                                                Book
+
+                                    </span>
+
+
+                                    <div>
+
+                                        <a  title="Perform an Author Search"
+                                            class="record_author"
+                                            href="/eg/opac/results?qtype=author;fi%3Asearch_format=book;query=Stratton%20%20Allan%20" rel="nofollow" vocab="">Stratton, Allan.</a>
+
+
+                                    </div>
+
+
+
+                                        <table
+                                            role="presentation"
+                                            title="Record Holdings Summary"
+                                            class="table_no_border_space table_no_border results_info_table container-fluid">
+
+
+                                            <tr class='result_table_title_cell'>
+                                                <td valign='top'><strong>Call number:</strong></td>
+                                                <td>TEEN 2. STRATTON</td>
+                                            </tr>
+
+                                            <!-- These fields are visible when viewing the results page in 'detailed' mode -->
+
+                                            <!-- Do not show publication-specific information on a metarecord search results page -->
+
+                                            <tr>
+                                                <td valign="top"><strong>Publisher:</strong></td>
+                                                <td>New York : HarperTeen, c2010.                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td valign="top"><strong>ISBN:</strong></td>
+                                                <td>9780061451119 (trade bdg.)</td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td valign="top"><strong>Edition:</strong></td>
+                                                <td>1st ed.                                                </td>
+                                            </tr>
+
+
+                                                <tr >
+                                                    <td valign="top"><strong>Phys. Desc.:</strong></td>
+                                                    <td>298 p. ; 22 cm.</td>
+                                                </tr>
+
+
+
+                                            <tr  class='result_table_title_cell container-fluid'>
+                                                <td colspan="2">
+                                                    <table role="presentation" title="Record Holdings Details" class='container-fluid table table-hover mt-4 miniTable holdingsTable'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Location</th>
+                                                                <th>Shelving Location</th>
+                                                                <th>Call Number</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                    <tbody>
+
+                                                        <tr mobile-count="#1">
+                                                            <td mobile-title="Location"><span class="sr-only">Location </span><a target="_blank" property="offeredBy" typeof="Library" href="/eg/opac/library/SBURY"><span property="name">Southbury Public Library</span></a>
+</td>
+                                                            <td mobile-title="Shelving Location"><span class="sr-only">Shelving Location </span>Teen Fiction</td>
+                                                            <td mobile-title="Call Number"><span class="sr-only">Call Number </span>TEEN 2. STRATTON</td>
+                                                            <td mobile-title="Status"><span class="sr-only">Status </span>Available</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                         <!-- END detail_record_view -->
+                                    </table>
+
+
+<div class="result_count">
+
+    6 of 6 copies available at Bibliomation.
+
+</div>
+<div class="result_count">
+
+</div>
+<div class="result_count">
+
+    1 of 1 copy available at Southbury Public Library.
+
+</div>
+
+
+
+
+
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="result_table_utils row">
+                                        <div class="btn-group-vertical mx-auto my-2" >
+
+
+
+
+                                        <!--Place Hold Button -->
+
+                                        <a role="button" href="/eg/opac/place_hold?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;hold_target=444868;hold_type=T;hold_source_page=%2Feg%2Fopac%2Fresults%3Fquery%3Dtitle%253A%255EBorderline%2524%3Bqtype%3Dtitle%3Bfi%253Asearch_format%3Dbook"
+                                            title="Place Hold on Borderline / Allan Stratton."
+                                            class="btn btn-action" rel="nofollow" vocab="">
+                                            <i class="fas fa-check" aria-hidden="true"></i>
+                                            <span class="result_place_hold">Place Hold</span>
+                                        </a>
+
+                                        <!-- eBook Buttons -->
+                                        <!--Basket and My Lists Buttons -->
+
+
+
+
+                                                <a href="/eg/opac/mylist/add?record=444868;anchor=record_444868" id="mylist_add_444868"
+                                                    data-recid="444868" data-action="add"
+                                                    role="button" class="mylist_action btn btn-action "
+                                                                                                        title="Add Borderline / Allan Stratton. to basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                                    Add to basket
+                                                </a>
+
+                                                <a href="/eg/opac/mylist/delete?anchor=record_444868;record=444868" id="mylist_delete_444868"
+                                                    data-recid="444868" data-action="delete" role="button"
+                                                    class="mylist_action btn btn-action hidden"
+                                                    title="Remove Borderline / Allan Stratton. from basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-minus-circle" aria-hidden="true"></i>
+                                                    Remove from basket
+                                                </a>
+
+
+
+
+
+                                        <!--Added Content - Content Cafe -->
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+
+
+                    <div class="row" style="border-top: 1px solid grey;">
+
+                    <!--Count&Checkboxes-->
+                        <div class="col-lg-1">
+                            <div class="results_row_count">
+                                <label for="select-114501">3</label>
+                                <input type="checkbox" id="select-114501"
+
+                                    title="Add to Basket"
+                                    aria-label="Add to Basket"
+                                    class="result_record_selector" value="114501" />
+
+                            </div>
+                        </div>
+                        <!--Cover Image-->
+                        <div class='col-sm-2 text-center' id="result114501">
+                            <a href="/eg/opac/record/114501?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><img alt=""
+                            id='item_jacket114501' class='my-2 img-fluid'
+                            src='https://southbury.biblio.org/opac/extras/ac/jacket/large/r/114501' style="max-height:150px;" /></a><br />
+                        </div>
+                            <!--Info-->
+                        <div class='result_table_title_cell col'>
+                            <div class="row align-items-start">
+                                <div class="result_metadata col-md-8 col-12">
+
+                                    <abbr class="unapi-id" title='tag:southbury.biblio.org,2024:biblio-record_entry/114501'></abbr>
+
+                                    <a class='record_title search_link' id='record_114501'
+                                        href="/eg/opac/record/114501?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"
+                                        title="Display record details for &quot;Borderline / Nevada Barr.&quot;">
+                                        <mark class='oils_SH title proper'>Borderline</mark>
+                                    </a>
+                                    <span class="mx-2">
+
+                                                <img alt="" src="https://southbury.biblio.org/images/format_icons/icon_format/book.png?8e3df6" />
+                                                Book
+
+                                    </span>
+
+
+                                    <div>
+
+                                        <a  title="Perform an Author Search"
+                                            class="record_author"
+                                            href="/eg/opac/results?qtype=author;fi%3Asearch_format=book;query=Barr%20%20Nevada%20" rel="nofollow" vocab="">Barr, Nevada.</a>
+
+
+                                    </div>
+
+
+
+                                        <table
+                                            role="presentation"
+                                            title="Record Holdings Summary"
+                                            class="table_no_border_space table_no_border results_info_table container-fluid">
+
+
+                                            <tr class='result_table_title_cell'>
+                                                <td valign='top'><strong>Call number:</strong></td>
+                                                <td>BARR/MYS </td>
+                                            </tr>
+
+                                            <!-- These fields are visible when viewing the results page in 'detailed' mode -->
+
+                                            <!-- Do not show publication-specific information on a metarecord search results page -->
+
+                                            <tr>
+                                                <td valign="top"><strong>Publisher:</strong></td>
+                                                <td>New York : G. P. Putnam's Sons, 2009.                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td valign="top"><strong>ISBN:</strong></td>
+                                                <td>0399155694</td>
+                                            </tr>
+
+
+
+
+                                                <tr >
+                                                    <td valign="top"><strong>Phys. Desc.:</strong></td>
+                                                    <td>399 p. ; 24 cm.</td>
+                                                </tr>
+
+
+
+                                            <tr  class='result_table_title_cell container-fluid'>
+                                                <td colspan="2">
+                                                    <table role="presentation" title="Record Holdings Details" class='container-fluid table table-hover mt-4 miniTable holdingsTable'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Location</th>
+                                                                <th>Shelving Location</th>
+                                                                <th>Call Number</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                    <tbody>
+
+                                                        <tr mobile-count="#1">
+                                                            <td mobile-title="Location"><span class="sr-only">Location </span><a target="_blank" property="offeredBy" typeof="Library" href="/eg/opac/library/SBURY"><span property="name">Southbury Public Library</span></a>
+</td>
+                                                            <td mobile-title="Shelving Location"><span class="sr-only">Shelving Location </span>Adult Mystery</td>
+                                                            <td mobile-title="Call Number"><span class="sr-only">Call Number </span>BARR/MYS </td>
+                                                            <td mobile-title="Status"><span class="sr-only">Status </span>Available</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                         <!-- END detail_record_view -->
+                                    </table>
+
+
+<div class="result_count">
+
+    34 of 34 copies available at Bibliomation.
+
+</div>
+<div class="result_count">
+
+</div>
+<div class="result_count">
+
+    1 of 1 copy available at Southbury Public Library.
+
+</div>
+
+
+
+
+
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="result_table_utils row">
+                                        <div class="btn-group-vertical mx-auto my-2" >
+
+
+
+
+                                        <!--Place Hold Button -->
+
+                                        <a role="button" href="/eg/opac/place_hold?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;hold_source_page=%2Feg%2Fopac%2Fresults%3Fquery%3Dtitle%253A%255EBorderline%2524%3Bqtype%3Dtitle%3Bfi%253Asearch_format%3Dbook;hold_target=114501;hold_type=T"
+                                            title="Place Hold on Borderline / Nevada Barr."
+                                            class="btn btn-action" rel="nofollow" vocab="">
+                                            <i class="fas fa-check" aria-hidden="true"></i>
+                                            <span class="result_place_hold">Place Hold</span>
+                                        </a>
+
+                                        <!-- eBook Buttons -->
+                                        <!--Basket and My Lists Buttons -->
+
+
+
+
+                                                <a href="/eg/opac/mylist/add?record=114501;anchor=record_114501" id="mylist_add_114501"
+                                                    data-recid="114501" data-action="add"
+                                                    role="button" class="mylist_action btn btn-action "
+                                                                                                        title="Add Borderline / Nevada Barr. to basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                                    Add to basket
+                                                </a>
+
+                                                <a href="/eg/opac/mylist/delete?anchor=record_114501;record=114501" id="mylist_delete_114501"
+                                                    data-recid="114501" data-action="delete" role="button"
+                                                    class="mylist_action btn btn-action hidden"
+                                                    title="Remove Borderline / Nevada Barr. from basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-minus-circle" aria-hidden="true"></i>
+                                                    Remove from basket
+                                                </a>
+
+
+
+
+
+                                        <!--Added Content - Content Cafe -->
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+
+
+                    <div class="row" style="border-top: 1px solid grey;">
+
+                    <!--Count&Checkboxes-->
+                        <div class="col-lg-1">
+                            <div class="results_row_count">
+                                <label for="select-605005">4</label>
+                                <input type="checkbox" id="select-605005"
+
+                                    title="Add to Basket"
+                                    aria-label="Add to Basket"
+                                    class="result_record_selector" value="605005" />
+
+                            </div>
+                        </div>
+                        <!--Cover Image-->
+                        <div class='col-sm-2 text-center' id="result605005">
+                            <a href="/eg/opac/record/605005?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"><img alt=""
+                            id='item_jacket605005' class='my-2 img-fluid'
+                            src='https://southbury.biblio.org/opac/extras/ac/jacket/large/r/605005' style="max-height:150px;" /></a><br />
+                        </div>
+                            <!--Info-->
+                        <div class='result_table_title_cell col'>
+                            <div class="row align-items-start">
+                                <div class="result_metadata col-md-8 col-12">
+
+                                    <abbr class="unapi-id" title='tag:southbury.biblio.org,2024:biblio-record_entry/605005'></abbr>
+
+                                    <a class='record_title search_link' id='record_605005'
+                                        href="/eg/opac/record/605005?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book"
+                                        title="Display record details for &quot;Borderline / Nevada Barr.&quot;">
+                                        <mark class='oils_SH title proper'>Borderline</mark>
+                                    </a>
+                                    <span class="mx-2">
+
+                                                <img alt="" src="https://southbury.biblio.org/images/format_icons/icon_format/lpbook.png?8e3df6" />
+                                                Large Print Material
+
+                                    </span>
+
+
+                                    <div>
+
+                                        <a  title="Perform an Author Search"
+                                            class="record_author"
+                                            href="/eg/opac/results?qtype=author;fi%3Asearch_format=book;query=Barr%20%20Nevada%20" rel="nofollow" vocab="">Barr, Nevada.</a>
+
+
+                                    </div>
+
+
+
+                                        <table
+                                            role="presentation"
+                                            title="Record Holdings Summary"
+                                            class="table_no_border_space table_no_border results_info_table container-fluid">
+
+
+                                            <tr class='result_table_title_cell'>
+                                                <td valign='top'><strong>Call number:</strong></td>
+                                                <td>BARR/MYS LP</td>
+                                            </tr>
+
+                                            <!-- These fields are visible when viewing the results page in 'detailed' mode -->
+
+                                            <!-- Do not show publication-specific information on a metarecord search results page -->
+
+                                            <tr>
+                                                <td valign="top"><strong>Publisher:</strong></td>
+                                                <td>Thorndike, Me. : Center Point Pub., 2009.                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td valign="top"><strong>ISBN:</strong></td>
+                                                <td>9781602854703 (library binding : alk. paper)</td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td valign="top"><strong>Edition:</strong></td>
+                                                <td>Center Point large print ed.                                                </td>
+                                            </tr>
+
+
+                                                <tr >
+                                                    <td valign="top"><strong>Phys. Desc.:</strong></td>
+                                                    <td>485 p. (large print) ; 23 cm.</td>
+                                                </tr>
+
+
+
+                                            <tr  class='result_table_title_cell container-fluid'>
+                                                <td colspan="2">
+                                                    <table role="presentation" title="Record Holdings Details" class='container-fluid table table-hover mt-4 miniTable holdingsTable'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Location</th>
+                                                                <th>Shelving Location</th>
+                                                                <th>Call Number</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                    <tbody>
+
+                                                        <tr mobile-count="#1">
+                                                            <td mobile-title="Location"><span class="sr-only">Location </span><a target="_blank" property="offeredBy" typeof="Library" href="/eg/opac/library/SBURY"><span property="name">Southbury Public Library</span></a>
+</td>
+                                                            <td mobile-title="Shelving Location"><span class="sr-only">Shelving Location </span>Adult Large Type</td>
+                                                            <td mobile-title="Call Number"><span class="sr-only">Call Number </span>BARR/MYS LP</td>
+                                                            <td mobile-title="Status"><span class="sr-only">Status </span>Available</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                         <!-- END detail_record_view -->
+                                    </table>
+
+
+<div class="result_count">
+
+    9 of 9 copies available at Bibliomation.
+
+</div>
+<div class="result_count">
+
+</div>
+<div class="result_count">
+
+    1 of 1 copy available at Southbury Public Library.
+
+</div>
+
+
+
+
+
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="result_table_utils row">
+                                        <div class="btn-group-vertical mx-auto my-2" >
+
+
+
+
+                                        <!--Place Hold Button -->
+
+                                        <a role="button" href="/eg/opac/place_hold?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;hold_source_page=%2Feg%2Fopac%2Fresults%3Fquery%3Dtitle%253A%255EBorderline%2524%3Bqtype%3Dtitle%3Bfi%253Asearch_format%3Dbook;hold_type=T;hold_target=605005"
+                                            title="Place Hold on Borderline / Nevada Barr."
+                                            class="btn btn-action" rel="nofollow" vocab="">
+                                            <i class="fas fa-check" aria-hidden="true"></i>
+                                            <span class="result_place_hold">Place Hold</span>
+                                        </a>
+
+                                        <!-- eBook Buttons -->
+                                        <!--Basket and My Lists Buttons -->
+
+
+
+
+                                                <a href="/eg/opac/mylist/add?record=605005;anchor=record_605005" id="mylist_add_605005"
+                                                    data-recid="605005" data-action="add"
+                                                    role="button" class="mylist_action btn btn-action "
+                                                                                                        title="Add Borderline / Nevada Barr. to basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                                    Add to basket
+                                                </a>
+
+                                                <a href="/eg/opac/mylist/delete?record=605005;anchor=record_605005" id="mylist_delete_605005"
+                                                    data-recid="605005" data-action="delete" role="button"
+                                                    class="mylist_action btn btn-action hidden"
+                                                    title="Remove Borderline / Nevada Barr. from basket" rel="nofollow" vocab="">
+                                                    <i class="fas fa-minus-circle" aria-hidden="true"></i>
+                                                    Remove from basket
+                                                </a>
+
+
+
+
+
+                                        <!--Added Content - Content Cafe -->
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div>
+
+
+
+    </div>
+
+
+
+<div class="facet_sidebar_hidden" id="facet_sidebar">
+    <h3 class="sr-only">Search Results Facets</h3>
+    <h3 class="sr-only">Search Results List</h3>
+</div>
+</div>
+
+</div>
+<div class="col-12">
+<div class="result_footer_nav1">
+
+<div class="results_header_nav1 py-4">
+
+
+    <nav aria-label="Page navigation">
+                <ul class='start_end_links_span pagination d-inline-flex'>
+                </ul>
+                </nav>
+
+    <span class="result_number">Results <span class="result_count_number">1</span> - <span class="result_count_number">4</span> of <span class="result_count_number">4</span>
+                <span class='padding-left-6'>(page <span class="result_count_number">1</span> of <span class="result_count_number">1</span>)
+                </span>
+    </span>
+</div>
+
+</div>
+</div>
+<div class="d-xl-none d-block">
+<div class="container-fluid my-3">
+<div class="facet_box_wrapper row">
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Personal Author</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BBarr%2C%20Nevada%5D' rel="nofollow" vocab="">
+                              Barr, Nevada
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BBlock%2C%20Lawrence%5D' rel="nofollow" vocab="">
+                              Block, Lawrence
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=author%7Cpersonal%5BStratton%2C%20Allan%5D' rel="nofollow" vocab="">
+                              Stratton, Allan
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Topic Subject</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BPigeon%2C%20Anna%20%28Fictitious%20character%29%5D' rel="nofollow" vocab="">
+                              Pigeon, Anna (Fictitious character)
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BRafting%20%28Sports%29%5D' rel="nofollow" vocab="">
+                              Rafting (Sports)
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BWilderness%20areas%5D' rel="nofollow" vocab="">
+                              Wilderness areas
+                            </a>
+                        </div>
+                        <div class="count">(2)</div>
+                    </div>
+
+
+
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=subject%7Ctopic%5BFathers%20and%20sons%5D' rel="nofollow" vocab="">
+                              Fathers and sons
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+                    <a class="button"
+                      title="Show More Topic Subject Entries"
+                      href="/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;long_facet=subjecttopic#facets" rel="nofollow" vocab="">
+                      More
+                    </a>
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+    <div class="facet-card w-100">
+    <div class="card">
+        <div class="card-header">
+            <span class="title text-center">Series Title</span>
+
+        </div>
+        <div class="card-body">
+            <div>
+
+                    <div class="facet_template">
+                        <div class="facet">
+                            <a
+                              title="Limit to results matching this term"
+                              href='/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book;facet=series%7Cseriestitle%5BHard%20Case%20Crime%20book%5D' rel="nofollow" vocab="">
+                              Hard Case Crime book
+                            </a>
+                        </div>
+                        <div class="count">(1)</div>
+                    </div>
+
+
+
+            </div>
+            <span class="float-right">
+
+            </span>
+            </div>
+
+        </div> <!-- box_wrapper -->
+    </div> <!-- facet_box_temp -->
+
+
+</div> <!-- facet_box_wrapper -->
+</div>
+
+</div>
+<script>
+resultBlock = document.getElementById('result_block');
+resultButton = document.getElementById('return_to_hits');
+facetSidebar = document.getElementById('facet_sidebar');
+facetButton =  document.getElementById('refine_hits');
+function getFacety() {
+    resultBlock.setAttribute('class', 'result_block_hidden');
+    resultButton.setAttribute('class', 'results_header_btns result_block_visible');
+    facetSidebar.setAttribute('class', 'facet_sidebar_visible');
+    facetButton.setAttribute('class', 'result_block_hidden');
+    window.location.hash = 'return_to_hits';
+}
+function getResulty() {
+    resultBlock.setAttribute('class', 'result_block_visible');
+    resultButton.setAttribute('class', 'result_block_hidden');
+    facetSidebar.setAttribute('class', 'facet_sidebar_hidden');
+    facetButton.setAttribute('class', 'results_header_btns result_block_visible');
+    window.location.hash = 'refine_hits';
+}
+</script>
+
+            </div>
+        </div>
+    </div>
+        </div>
+
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Login To Evergreen</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+
+    <form id="login_form" method='post' action="/eg/opac/login?redirect_to=%2Feg%2Fopac%2Fmyopac%2Fmain">
+<div class='container'>
+
+    <div class="row">
+        <div class="col-sm w-50">
+            <label for='username_field' class="lbl1" >Library Card Number
+            <a href="#" title="<div>
+Please enter your full library card number or unique username.
+<br>
+Example: 12340001234567
+</div>" data-html="true" data-toggle="tooltip">
+            <i class="fas fa-question-circle"></i></a></label>
+        </div>
+        <div class="col-sm w-50">
+            <label for="password_field" class="lbl1" >Password
+            <a href="#" title="<div>First time logging in?<br> Click the 'Get Password' link to get an email.
+</div>
+" data-html="true" data-toggle="tooltip">
+            <i class="fas fa-question-circle"></i></a></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm w-50">
+            <input class="form-control" type='text' id="username_field" name="username"/>
+        </div>
+        <div class="col-sm w-50">
+            <div class="input-group">
+				<input class="form-control" id="password_field" name="password" type="password"
+					spellcheck="false" autocomplete="false" autocapitalize="none" aria-description="Your password is not visible."/>
+				<button id="show_password" class="input-group-text pointer" type="button" role="checkbox">
+					<i class="fas fa-eye-slash"></i>
+				</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm w-50">
+
+            <a href='/eg/opac/register'>Request A Card</a>
+
+        </div>
+        <div class="col-sm w-50">
+
+                <a href='/eg/opac/password_reset'>Get Password  </a>
+
+        </div>
+    </div>
+
+</div>
+
+    <div class="mx-auto row">
+
+        <div style="clear: both; padding-top: 15px;" class="col-12">
+        </div>
+
+        <input id="client_tz_id" name="client_tz" type="hidden" />
+        </div>
+  </div>
+
+
+      <div class="modal-footer">
+      <div class="mr-auto">
+        <input type='hidden' name='redirect_to' value='https://southbury.biblio.org/eg/opac/myopac/main'/>
+        <input type="checkbox" name="persist" id="login_persist" class="mr-1"/>
+        <label for="login_persist"> Stay logged in?</label>
+      </div>
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times" aria-hidden="true"></i> Close</button>
+        <button type="submit" class="btn btn-confirm"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Log in</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+        <h2 class="sr-only">Additional Resources</h2>
+
+<div id="footer-wrap" class="mt-auto">
+<div id="footer">
+<div class="row mx-0">
+<div class="col-12 col-lg-3">
+
+</div>
+<div class="col-12 col-lg-6">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <div class="row w-100">
+        <div class="col-12">
+            <ul class="navbar-nav" align="center">
+                <li class="nav-item"><a class="nav-link" href="http://biblio.org/opac-help/">Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://biblio.org">About Bibliomation</a></li>
+                <li class="nav-item"><a class="nav-link" href="/eg/opac/biblio_map">Bibliomation Libraries Map</a></li>
+                <li class="nav-item"><a class="nav-link" href="/eg/opac/biblio_map"><img src='https://southbury.biblio.org/images/map_link.png'/></a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+
+      <div id="copyright_text" class="mt-3">
+        Copyright &copy; 2006-2024 Georgia Public Library Service, and others
+    <div id="footer_logo">
+        Powered by
+        <a href="http://evergreen-ils.org">
+            <img id="footer_logo_image" src="https://southbury.biblio.org/opac/images/eg_tiny_logo.png?8e3df6"
+                alt="Evergreen"
+            />
+        </a>
+    </div>
+    </div>
+
+</div>
+ <div class="col-12 col-lg-3">
+
+<form id="pref_locale_picker_form" class="language_form" action="/eg/opac/results?query=title%3A%5EBorderline%24;qtype=title;fi%3Asearch_format=book" method="post">
+    <h6><i class="fas fa-globe"></i> Language</h6>        <input type="hidden" name="fi:search_format" value="book" />        <input type="hidden" name="qtype" value="title" />        <input type="hidden" name="query" value="title:^Borderline$" />    <ul style="list-style:none;padding:0px;">
+        <li>
+        <button type="submit" name="set_eg_locale" value="es_es" >Español</button></li>
+        <li>
+        <button type="submit" name="set_eg_locale" value="en_us" disabled="disabled">English (US)</button></li>
+    </ul>
+</form>
+</div>
+
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script  src="https://southbury.biblio.org/js/ui/default/opac/simple.js?8e3df6"></script>
+<!--
+This file allows us to bring TT2 i18n'ized strings
+to js source files, via js blob.
+-->
+<script>
+    // Add a boost-style format function to JavaScript string.
+    // Implementation stolen from StackOverflow:
+    // https://stackoverflow.com/questions/610406/javascript-equivalent-to-printf-string-format
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+        return typeof args[number] != 'undefined'
+            ? args[number]
+            : match;
+        });
+    };
+
+    var eg_opac_i18n = {};
+
+    eg_opac_i18n.EG_MISSING_REQUIRED_INPUT = "Please fill out all required fields";
+    eg_opac_i18n.EG_INVALID_DATE = "That is not a valid date in the future.";
+    // For multiple holds placement confirmation dialog. {0} is replaced by number of copies requested.
+    eg_opac_i18n.EG_MULTIHOLD_MESSAGE = "Do you really want to place {0} holds for this title?";
+    // For Read More functionality
+    eg_opac_i18n.EG_READ_MORE = "Read More";
+    eg_opac_i18n.EG_READ_LESS = "Read Less";
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- DOB validation for Patron Registration in OPAC -->
+<script >
+    function dobValidate(input) {
+        var validformat = /^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/
+        var returnval = false
+        if (!validformat.test(input.value))
+            alert("You have entered an invalid date, or an improperly formatted date.  Please enter Date of Birth in YYYY-MM-DD or YYYY/MM/DD format and try again.")
+        else
+            returnval = true
+        if (returnval == false) input.select()
+        return returnval
+}
+</script>
+
+
+
+<script>
+    window.egStrings = [];
+    window.egStrings['CONFIRM_BASKET_EMPTY'] = "Remove all records from basket?";
+</script>
+<script src='https://southbury.biblio.org/js/ui/default/opac/record_selectors.js?8e3df6' async defer></script>
+
+<!-- Require some inputs and selections for browsers that don't support required form field element -->
+
+
+<script >var max_cart_size = 500;</script>
+
+
+<link rel="stylesheet" href="https://southbury.biblio.org/js/ui/default/common/build/js/glide/css/glide.core.min.css?8e3df6">
+<link rel="stylesheet" href="https://southbury.biblio.org/js/ui/default/common/build/js/glide/css/glide.theme.min.css?8e3df6">
+<!-- JS imports, etc.  -->
+<script  src="https://southbury.biblio.org/opac/deps/node_modules/jquery/dist/jquery.min.js?8e3df6"></script>
+<script src="https://southbury.biblio.org/opac/deps/node_modules/popper.js/dist/umd/popper.min.js?8e3df6"></script>
+<script src="https://southbury.biblio.org/opac/deps/node_modules/bootstrap/dist/js/bootstrap.min.js?8e3df6"></script>
+<script  src="https://southbury.biblio.org/opac/deps/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js?8e3df6"></script>
+
+  <script>
+    $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<!-- STACKMAP CHANGES BEGIN HERE -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <script src="https://www.stackmapintegration.com/hallmemorial-evergreen/StackMap.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" media="all" type="text/css" href="https://www.stackmapintegration.com/hallmemorial-evergreen/StackMap.min.css" />
+<!-- STACKMAP CHANGES END HERE -->
+        <script>
+    $(document).ready(function(){
+    $('.tooltip').tooltip();
+    });
+</script>
+
+
+
+    </body>
+</html>
+

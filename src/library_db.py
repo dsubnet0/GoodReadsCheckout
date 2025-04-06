@@ -3,16 +3,12 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-BASE_URL =  url = f'https://southbury.biblio.org/eg/opac/results?query='
-
 
 class LibraryDB():
 
     def __init__(self, base_url=None, verbose=False):
         if base_url:
             self._base_url = base_url
-        else:
-            self._base_url = BASE_URL
         self.verbose = verbose
 
     @property
@@ -62,11 +58,13 @@ class LibraryDB():
 
 
     def _get_search_url_isbn(self, isbn: str, format: str) -> str:
-        return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        #return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
+        return f'{self.base_url}identifier%7Cisbn%3A{isbn}&qtype=keyword&fi%3Asearch_format={format}'
 
     def _get_search_url_title(self, title: str, format: str) -> str:
         # return f'{self.base_url}"{title}"&qtype=title&fi%3Asearch_format={format}&locg=89&detail_record_view=0&_adv=1&page=0&_special=1'
-        return f'{self.base_url}title%3A%5E{title}%24&qtype=title&fi%3Asearch_format={format}'
+        replaced_title = title.replace(' ', '+')
+        return f'{self.base_url}title%3A%22{replaced_title}%22&qtype=keyword&fi%3Asearch_format={format}'
 
 
     def _parse_library_results(self, page) -> List:

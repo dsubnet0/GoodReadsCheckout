@@ -4,6 +4,8 @@ from goodreads_list import GoodReadsList
 from library_db import LibraryDB
 from rakuten_querier import RakutenQuerier
 
+#BASE_URL = f'https://southbury.biblio.org/eg/opac/results?query='
+BASE_URL = f'https://woodbury.biblio.org/eg/opac/results?query='
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -21,6 +23,7 @@ if __name__ == '__main__':
     rakuten_application_id = 1093196333123354205
     rakuten_base_url = f'https://app.rakuten.co.jp/services/api/Kobo/EbookSearch/20170426'
     rq = RakutenQuerier(rakuten_base_url, rakuten_application_id, verbose=args.verbose)
+    my_library = LibraryDB(base_url=BASE_URL, verbose=args.verbose)
 
     for book_dict in my_goodreads.toread_list:
         if args.verbose: print(book_dict)
@@ -28,7 +31,6 @@ if __name__ == '__main__':
         isbn = book_dict['isbn']
         isbn13 = book_dict['isbn13']
         if args.books:
-            my_library = LibraryDB(verbose=args.verbose)
             library_result = my_library.get_book(title=title, isbn=isbn, format='book')
             if library_result:
                 print(library_result)

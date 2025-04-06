@@ -15,6 +15,7 @@ lxml = "*"
 pandas = "*"
 beautifulsoup4 = "*"
 dumper = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"

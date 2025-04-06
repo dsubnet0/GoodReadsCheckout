@@ -102,3 +102,12 @@ def test_get_book_by_title_newline(ldb):
 
     ldb._query_library_by_isbn.assert_not_called()
     ldb._query_library_by_title.assert_called_once_with('title1', 'format1')
+
+
+def test_get_search_url_title(ldb):
+    '''
+    Should use proper URL construction for title search
+    '''
+    url_string = ldb._get_search_url_title(title='title with spaces', format='format1')
+
+    assert url_string == 'footitle%3A%22title+with+spaces%22&qtype=keyword&fi%3Asearch_format=format1'
